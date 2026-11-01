@@ -386,7 +386,7 @@
       "aliases": ["ADK", "Agent Development Kit", "google-adk"],
       "lecture": 3,
       "category": "Agentes",
-      "definition": "Framework de código abierto para desarrollar agentes, publicado por Google. Está estrechamente integrado con Gemini y permite visualizar el flujo de llamadas a herramientas con adk web. La versión 2.0 introduce cambios incompatibles con la serie 1.x. En este curso se usa en el nivel avanzado de la tarea.",
+      "definition": "Framework de desarrollo de agentes de código abierto publicado por Google, con una integración profunda con Gemini. La versión 2.0 introdujo cambios importantes respecto a la serie 1.x. En este curso se utiliza en el nivel Avanzado de la tarea de Lecture 03.",
       "related": ["pydantic-ai", "ai-agent"]
     },
     {
