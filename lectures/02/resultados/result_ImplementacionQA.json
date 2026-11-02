@@ -1,0 +1,76 @@
+{
+  "config": {
+    "base_model": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "seed": 42,
+    "num_train_epochs": 10,
+    "warmup_steps": 6,
+    "lr": 0.0002,
+    "lora_r": 4,
+    "lora_alpha": 32,
+    "max_seq_len": 512,
+    "max_new_tokens": 96,
+    "gen": {
+      "do_sample": false
+    }
+  },
+  "versions": {
+    "transformers": "5.21.0",
+    "peft": "0.21.2",
+    "trl": "1.14.2",
+    "torch": "2.11.0+cu130"
+  },
+  "method": "LoRA (sin cuantización)",
+  "before": {
+    "label": "before",
+    "n": 21,
+    "format_rate": 0.6666666666666666,
+    "content_rate": 0.47619047619047616,
+    "both_rate": 0.47619047619047616,
+    "seconds": 34.7
+  },
+  "after": {
+    "label": "after",
+    "n": 21,
+    "format_rate": 1.0,
+    "content_rate": 0.9523809523809523,
+    "both_rate": 0.9523809523809523,
+    "seconds": 49.1
+  },
+  "regressed": [],
+  "knowledge": [
+    {
+      "Pregunta": "¿Cuál es el tiempo máximo permitido para ejecutar UAT?",
+      "Aparece en la FAQ": false,
+      "Clasificación antes del entrenamiento": "format_error",
+      "Salida antes del entrenamiento": "{\"answer\": \"No se indica en esta FAQ. Se necesita confirmación del equipo de QA.\"}",
+      "Clasificación después del entrenamiento": "needs_review",
+      "Salida después del entrenamiento": "{\"answer\": \"No se indica en esta FAQ. Se necesita confirmación del equipo de QA.\", \"needs_review\": true}"
+    },
+    {
+      "Pregunta": "¿Qué herramienta específica se utiliza para registrar defectos?",
+      "Aparece en la FAQ": false,
+      "Clasificación antes del entrenamiento": "format_error",
+      "Salida antes del entrenamiento": "{\"answer\": \"La herramienta de gestión de defectos definida para el proyecto\"}",
+      "Clasificación después del entrenamiento": "asserted",
+      "Salida después del entrenamiento": "{\"answer\": \"Los defectos identificados durante UAT se registran en la herramienta de gestión de defectos definida para el proyecto.\", \"needs_review\": false}"
+    },
+    {
+      "Pregunta": "¿Quién es el responsable de aprobar el despliegue a producción?",
+      "Aparece en la FAQ": false,
+      "Clasificación antes del entrenamiento": "asserted",
+      "Salida antes del entrenamiento": "{\"answer\": \"Los responsables definidos\", \"needs_review\": false}",
+      "Clasificación después del entrenamiento": "needs_review",
+      "Salida después del entrenamiento": "{\"answer\": \"No se indica en esta FAQ. Se necesita confirmación del equipo de QA.\", \"needs_review\": true}"
+    },
+    {
+      "Pregunta": "¿Qué se necesita para iniciar UAT?",
+      "Aparece en la FAQ": true,
+      "Clasificación antes del entrenamiento": "asserted",
+      "Salida antes del entrenamiento": "{\"answer\": \"Historias aprobadas, un ambiente disponible y datos de prueba preparados.\", \"needs_review\": false}",
+      "Clasificación después del entrenamiento": "asserted",
+      "Salida después del entrenamiento": "{\"answer\": \"Para iniciar UAT se necesitan historias aprobadas, un ambiente disponible y datos de prueba preparados.\", \"needs_review\": false}"
+    }
+  ],
+  "executed_training_myself": true
+}
