@@ -1,0 +1,201 @@
+{
+  "summary": {
+    "label": "before_4bit",
+    "n": 21,
+    "format_rate": 0.19047619047619047,
+    "content_rate": 0.23809523809523808,
+    "both_rate": 0.19047619047619047,
+    "seconds": 36.3
+  },
+  "rows": [
+    {
+      "question": "¿Qué debe estar preparado antes de iniciar las pruebas UAT?",
+      "raw": "Historias aprobadas, un ambiente disponible y datos de prueba preparados.",
+      "format_ok": false,
+      "format_reason": "json_error: JSONDecodeError",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Qué condiciones deben cumplirse antes de ejecutar UAT?",
+      "raw": "[{\"answer\": \"Historias aprobadas, un ambiente disponible y datos de prueba preparados.\", \"needs_review\": false}]",
+      "format_ok": false,
+      "format_reason": "not_object",
+      "content_ok": true,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Qué se requiere respecto a las historias, el ambiente y los datos?",
+      "raw": "{\"answer\": \"Para iniciar UAT se necesitan historias aprobadas, un ambiente disponible y datos de prueba preparados.\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Dónde debe reportarse un defecto detectado en UAT?",
+      "raw": "{\"answer\": \"La herramienta de gestión de defectos definida para el proyecto\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Dónde se documentan los defectos encontrados en UAT?",
+      "raw": "{\"answer\": \"La herramienta de gestión de defectos definida para el proyecto\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Cuál es el mecanismo definido para registrar defectos?",
+      "raw": "{\"answer\": \"La herramienta de gestión de defectos definida para el proyecto\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Qué condiciones debe cumplir un defecto para ser crítico?",
+      "raw": "Un defecto crítico impide ejecutar una funcionalidad esencial y no existe una alternativa operativa viable.",
+      "format_ok": false,
+      "format_reason": "json_error: JSONDecodeError",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Qué sucede con una funcionalidad esencial ante un defecto crítico?",
+      "raw": "Un defecto crítico impide ejecutar una funcionalidad esencial y no existe una alternativa operativa viable.",
+      "format_ok": false,
+      "format_reason": "json_error: JSONDecodeError",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Cómo se identifica un defecto crítico según la FAQ?",
+      "raw": "No se indica en esta FAQ. Se necesita confirmación del equipo de QA.",
+      "format_ok": false,
+      "format_reason": "json_error: JSONDecodeError",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Qué datos deben registrarse como evidencia de un fallo?",
+      "raw": "[\"identificador del caso\", \"paso ejecutado\", \"resultado esperado\", \"resultado obtenido\", \"evidencia del fallo\"]",
+      "format_ok": false,
+      "format_reason": "not_object",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Qué resultados deben aparecer en la evidencia de una prueba fallida?",
+      "raw": "[\"identificador del caso, los pasos ejecutados, el resultado esperado, el resultado obtenido y la evidencia del fallo\"]",
+      "format_ok": false,
+      "format_reason": "not_object",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Qué información debe acompañar el registro de una prueba fallida?",
+      "raw": "[\"identificador del caso\", \"paso ejecutado\", \"resultado esperado\", \"resultado obtenido\", \"evidencia del fallo\"]",
+      "format_ok": false,
+      "format_reason": "not_object",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Qué debe verificarse antes de emitir la aprobación de UAT?",
+      "raw": "true",
+      "format_ok": false,
+      "format_reason": "not_object",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Qué condiciones se exigen para completar el sign-off de UAT?",
+      "raw": "[\"criterios de salida\", \"revisar los defectos pendientes\", \"obtener la aprobación de los responsables definidos\"]",
+      "format_ok": false,
+      "format_reason": "not_object",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Qué se revisa antes de obtener la aprobación del cierre de UAT?",
+      "raw": "true",
+      "format_ok": false,
+      "format_reason": "not_object",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "¿Cuál es el porcentaje mínimo de casos aprobados para cerrar UAT?",
+      "raw": "No se indica en esta FAQ. Se necesita confirmación del equipo de QA.",
+      "format_ok": false,
+      "format_reason": "json_error: JSONDecodeError",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": true
+    },
+    {
+      "question": "¿Quién autoriza el despliegue a producción?",
+      "raw": "No se indica en esta FAQ. Se necesita confirmación del equipo de QA.",
+      "format_ok": false,
+      "format_reason": "json_error: JSONDecodeError",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": true
+    },
+    {
+      "question": "¿Qué herramienta de automatización está aprobada para el proyecto?",
+      "raw": "No se indica en esta FAQ. Se necesita confirmación del equipo de QA.",
+      "format_ok": false,
+      "format_reason": "json_error: JSONDecodeError",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": true
+    },
+    {
+      "question": "¿Cuál es el SLA establecido para resolver defectos críticos?",
+      "raw": "No se indica en esta FAQ. Se necesita confirmación del equipo de QA.",
+      "format_ok": false,
+      "format_reason": "json_error: JSONDecodeError",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": true
+    },
+    {
+      "question": "¿Cuántos casos de prueba deben ejecutarse diariamente?",
+      "raw": "No se indica en esta FAQ. Se necesita confirmación del equipo de QA.",
+      "format_ok": false,
+      "format_reason": "json_error: JSONDecodeError",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": true
+    },
+    {
+      "question": "¿Quién firma específicamente el acta de sign-off de UAT?",
+      "raw": "No se indica en esta FAQ. Se necesita confirmación del equipo de QA.",
+      "format_ok": false,
+      "format_reason": "json_error: JSONDecodeError",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": true
+    }
+  ]
+}
