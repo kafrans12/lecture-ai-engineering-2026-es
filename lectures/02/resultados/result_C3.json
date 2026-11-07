@@ -1,0 +1,76 @@
+{
+  "config": {
+    "base_model": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "seed": 42,
+    "num_train_epochs": 10,
+    "warmup_steps": 6,
+    "lr": 0.0001,
+    "lora_r": 4,
+    "lora_alpha": 32,
+    "max_seq_len": 512,
+    "max_new_tokens": 96,
+    "gen": {
+      "do_sample": false
+    }
+  },
+  "versions": {
+    "transformers": "5.18.0",
+    "peft": "0.21.1",
+    "trl": "1.14.2",
+    "torch": "2.11.0+cu130"
+  },
+  "method": "LoRA (sin cuantización)",
+  "before": {
+    "label": "before",
+    "n": 21,
+    "format_rate": 1.0,
+    "content_rate": 0.5238095238095238,
+    "both_rate": 0.5238095238095238,
+    "seconds": 42.4
+  },
+  "after": {
+    "label": "after",
+    "n": 21,
+    "format_rate": 1.0,
+    "content_rate": 0.9047619047619048,
+    "both_rate": 0.9047619047619048,
+    "seconds": 39.5
+  },
+  "regressed": [],
+  "knowledge": [
+    {
+      "Pregunta": "¿Cuándo vence el proyecto final de este curso?",
+      "Aparece en la FAQ": false,
+      "Clasificación antes del entrenamiento": "needs_review",
+      "Salida antes del entrenamiento": "{\"answer\": \"No se especifica el plazo de vencimiento del proyecto final en la FAQ proporcionada.\", \"needs_review\": true}",
+      "Clasificación después del entrenamiento": "asserted",
+      "Salida después del entrenamiento": "{\"answer\": \"El plazo de entrega del proyecto final es el 30 de septiembre a las 23:59 (hora de Japón).\", \"needs_review\": false}"
+    },
+    {
+      "Pregunta": "¿Cómo se llama el docente?",
+      "Aparece en la FAQ": false,
+      "Clasificación antes del entrenamiento": "needs_review",
+      "Salida antes del entrenamiento": "{\"answer\": \"Se necesita confirmación\", \"needs_review\": true}",
+      "Clasificación después del entrenamiento": "needs_review",
+      "Salida después del entrenamiento": "{\"answer\": \"Se necesita confirmación\", \"needs_review\": true}"
+    },
+    {
+      "Pregunta": "¿Cuál es el tema de la próxima clase?",
+      "Aparece en la FAQ": false,
+      "Clasificación antes del entrenamiento": "needs_review",
+      "Salida antes del entrenamiento": "{\"answer\": \"El tema de la próxima clase no se especifica en la FAQ proporcionada.\", \"needs_review\": true}",
+      "Clasificación después del entrenamiento": "needs_review",
+      "Salida después del entrenamiento": "{\"answer\": \"Se necesita confirmación\", \"needs_review\": true}"
+    },
+    {
+      "Pregunta": "¿Cuál es el plazo de entrega de la tarea?",
+      "Aparece en la FAQ": true,
+      "Clasificación antes del entrenamiento": "asserted",
+      "Salida antes del entrenamiento": "{\"answer\": \"30 de septiembre a las 23:59 (hora de Japón)\", \"needs_review\": false}",
+      "Clasificación después del entrenamiento": "asserted",
+      "Salida después del entrenamiento": "{\"answer\": \"El plazo de entrega de la tarea es el 30 de septiembre a las 23:59 (hora de Japón).\", \"needs_review\": false}"
+    }
+  ],
+  "executed_training_myself": true
+}
