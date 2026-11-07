@@ -11,7 +11,7 @@ Los ejercicios están diseñados para realizarlos **solo con el navegador**. No 
 |---|---|---|
 | Cuenta **personal** de GitHub | Crear un fork de este repositorio y entregar el trabajo mediante una rama y un PR | Las cuentas administradas por empresas o centros educativos pueden tener restricciones para Codespaces y Copilot |
 | GitHub Codespaces | Entorno de desarrollo para Lecture 01, Lecture 03, Lecture 05 y otras sesiones. La configuración de `.devcontainer/` prepara automáticamente un contenedor con Python 3.12, uv y Node.js | La cuota gratuita de una cuenta personal es de 120 horas de núcleo al mes (unas 60 horas con 2 núcleos). **Detén el Codespace al terminar** |
-| GitHub Copilot (basta con Free) | Completar código y usar el chat. En la tarea avanzada de Lecture 05 también se usa como cliente MCP | Free tiene límites mensuales para las sugerencias de código y el chat |
+| GitHub Copilot (basta con Free) | Completar código y usar el chat. En la tarea avanzada de Lecture 06 también se usa como cliente MCP | Free tiene límites mensuales para las sugerencias de código y el chat |
 | Gemini API (cuota gratuita de Google AI Studio) | Llamar al LLM. Genera la clave con una cuenta **personal** de Google y pásala mediante el secret `GEMINI_API_KEY` de Codespaces | La cuota gratuita tiene límites por minuto y por día (véase «Supuestos y limitaciones» más abajo) |
 | Google Colab (GPU T4, cuota gratuita) | Se usa únicamente para el entrenamiento con LoRA de Lecture 02 | El tiempo de uso de la GPU es limitado. Elimina el entorno de ejecución al terminar |
 
@@ -41,12 +41,17 @@ app/
   config.py      Lectura del nombre del modelo y de la clave API
   ask.py         Lecture 01: hacer preguntas al LLM
   tools.py       Lecture 03: herramientas del agente (búsqueda en el glosario, etc.)
-  agent.py       Lecture 03: agente de apoyo al aprendizaje con Pydantic AI (Lecture 05: mediante MCP con --mcp)
-  mcp_server.py  Lecture 05: servidor MCP que ofrece el glosario
-  mcp_servers.json Lecture 05: configuración de los servidores MCP que se usarán (formato mcpServers)
+  agent.py       Lecture 03: agente de apoyo al aprendizaje con Pydantic AI (Lecture 06: mediante MCP con --mcp)
+  judge.py       Lecture 04: evaluar casos con un LLM y calcular el acuerdo con etiquetas humanas
+  mcp_server.py  Lecture 06: servidor MCP que ofrece el glosario
+  mcp_servers.json Lecture 06: configuración de los servidores MCP que se usarán (formato mcpServers)
 data/
   glossary.json  Glosario del curso
   lectures/      Puntos clave de cada sesión
+  eval/          Lecture 04: conjunto de evaluación (lec04_cases.jsonl) y criterios (rubric.md)
+tools/
+  annotate.py    Lecture 04: interfaz de etiquetado (Streamlit, añadido temporalmente con uv run --with)
+.streamlit/      Configuración de Streamlit para el reenvío de puertos de Codespaces
 lectures/NN/
   problem.md     Ejercicios y tareas de la sesión
   answer.md      Archivo que debes completar y entregar
@@ -70,7 +75,7 @@ Las tareas tienen tres niveles: «Básico», «Implementación» y «Avanzado».
 - **El modelo predeterminado es `gemini-3.5-flash-lite`**. Puedes cambiarlo con la variable de entorno `AIE_MODEL` (véase «Cambiar de modelo» más abajo). También puedes usar otros modelos o una API contratada por tu cuenta
 - **La cuota gratuita de Gemini API tiene límites de uso**. Los agentes (a partir de Lecture 03) llaman al LLM varias veces por pregunta, por lo que alcanzan el límite antes que en Lecture 01. Si aparece `Se ha alcanzado el límite de uso`, espera aproximadamente 1 minuto. Si se repite `El modelo está saturado (503)`, prueba con `AIE_MODEL=gemini-3.1-flash-lite`
 - **Pasa la clave API únicamente mediante la variable de entorno `GEMINI_API_KEY`**. No la pegues en el código, en commits ni en el chat. Si se filtra, elimínala en AI Studio y crea otra
-- Codespaces puede acceder a Internet, pero no se puede acceder a su interior desde fuera (el reenvío de puertos es privado de forma predeterminada). El servidor MCP de Lecture 05 se ejecuta dentro de Codespaces
+- Codespaces puede acceder a Internet, pero no se puede acceder a su interior desde fuera (el reenvío de puertos es privado de forma predeterminada). El servidor MCP de Lecture 06 se ejecuta dentro de Codespaces
 - Las pruebas (`uv run pytest -q`) funcionan sin clave API (usan TestModel, que no llama al LLM)
 
 ## Normas que debes respetar

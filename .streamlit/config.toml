@@ -1,0 +1,12 @@
+# Lecture 04: configuración de tools/annotate.py (Streamlit) para abrirlo mediante el reenvío de puertos de Codespaces
+[server]
+headless = true
+port = 8501
+enableCORS = false
+enableXsrfProtection = false
+
+[browser]
+gatherUsageStats = false
+
+[client]
+toolbarMode = "minimal"

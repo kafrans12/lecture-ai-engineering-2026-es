@@ -1,4 +1,4 @@
-# Lecture 05: ejercicios y tarea — usar las herramientas mediante un servidor MCP
+# Lecture 06: ejercicios y tarea — usar las herramientas mediante un servidor MCP
 
 ## Objetivos de esta sesión
 
@@ -8,21 +8,21 @@
 
 ## Preparación
 
-Si has terminado el trabajo de las sesiones anteriores, crea la rama `lec05` desde `main`.
+Si has terminado el trabajo de las sesiones anteriores, crea la rama `lec06` desde `main`.
 A partir de esta sesión hay más dependencias, así que ejecuta una vez `uv sync --frozen`.
 
 ```bash
-git switch main && git switch -c lec05
+git switch main && git switch -c lec06
 uv sync --frozen
 ```
 
-Si no has terminado, puedes crear una rama desde el código inicial de esta sesión en el repositorio del curso (etiqueta `lec05-start`).
+Si no has terminado, puedes crear una rama desde el código inicial de esta sesión en el repositorio del curso (etiqueta `lec06-start`).
 
 ```bash
 git remote -v                     # Si no existe upstream, añádelo con la siguiente línea
 git remote add upstream https://github.com/matsuolab/lecture-ai-engineering-2026.git
 git fetch upstream --tags
-git switch -c lec05 lec05-start
+git switch -c lec06 lec06-start
 uv sync --frozen
 ```
 
@@ -32,7 +32,7 @@ uv sync --frozen
 
 ```bash
 uv run python -m app.agent --list-tools          # Lecture 03: herramientas registradas directamente como funciones
-uv run python -m app.agent --mcp --list-tools    # Lecture 05: herramientas recibidas de un servidor MCP
+uv run python -m app.agent --mcp --list-tools    # Lecture 06: herramientas recibidas de un servidor MCP
 ```
 
 Ambos comandos funcionan sin clave API porque no llaman al LLM.
@@ -52,7 +52,7 @@ Internamente, `build_mcp_agent()` de `app/agent.py` lee el archivo de configurac
 
 ### 3. Exponer una herramienta
 
-En el lugar marcado como `TODO(Lecture 05: ejercicio)` de `app/mcp_server.py`, expón también `get_lecture_summary` mediante MCP (una sola línea, igual que para `search_glossary`).
+En el lugar marcado como `TODO(Lecture 06: ejercicio)` de `app/mcp_server.py`, expón también `get_lecture_summary` mediante MCP (una sola línea, igual que para `search_glossary`).
 
 ```bash
 uv run python -m app.agent --mcp --list-tools
@@ -93,7 +93,7 @@ uv run python -m app.agent --mcp --trace "Resume en español y en 3 líneas el i
 
 ### 5. Entregar el trabajo
 
-Completa `lectures/05/answer.md` y crea un PR de `lec05` hacia `main` de tu propio fork.
+Completa `lectures/06/answer.md` y crea un PR de `lec06` hacia `main` de tu propio fork.
 
 ## Tarea (basta con completar un nivel)
 
