@@ -6,6 +6,7 @@ y en los argumentos con los que la llama.
 """
 
 import json
+import random
 from functools import cache
 from pathlib import Path
 
@@ -79,3 +80,35 @@ def get_lecture_summary(lecture: int) -> str:
         available = sorted(p.stem for p in (DATA_DIR / "lectures").glob("*.md"))
         return f"Todavía no hay puntos clave de Lecture {lecture:02d}. Sesiones disponibles: {', '.join(available)}"
     return path.read_text(encoding="utf-8")
+
+
+def make_quiz(lecture: int) -> str:
+    """Genera una pregunta de repaso a partir del glosario de una sesión.
+
+    Úsala cuando el usuario solicite una pregunta de repaso o un quiz
+    de una Lecture específica. Indica el número de sesión en lecture.
+    """
+    glossary = load_glossary()
+
+    terms = [
+        entry for entry in glossary
+        if entry["lecture"] == lecture
+    ]
+
+    if not terms:
+        return json.dumps(
+            {
+                "message": f"No hay términos disponibles para Lecture {lecture:02d}."
+            },
+            ensure_ascii=False,
+        )
+
+    selected = random.choice(terms)
+
+    return json.dumps(
+        {
+            "question": f"¿Qué significa {selected['term']}?",
+            "answer": selected["definition"],
+        },
+        ensure_ascii=False,
+    )

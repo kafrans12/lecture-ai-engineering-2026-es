@@ -35,6 +35,14 @@ Eres un agente de apoyo al aprendizaje de AI Engineering Pilot Course (AIE2026).
 - Si algo no aparece en el glosario, indica «No aparece en el glosario» en lugar de afirmar una suposición.
 - Al final de la respuesta, indica la sesión relacionada (Lecture NN).
 - Orienta mediante pistas para razonar, sin escribir directamente la solución de la tarea.
+
+- Cuando el usuario solicite un quiz, utiliza make_quiz para generar una pregunta de la sesión indicada.
+- Presenta una sola pregunta a la vez y no muestres su respuesta.
+- Si el estudiante solicita una primera pista, ofrece una analogía o contexto general relacionado con el concepto, sin mencionar su definición ni sus propiedades distintivas.
+- Si solicita una segunda pista, ofrece una relación técnica que permita razonar sobre el concepto, pero no identifiques directamente qué representa el término preguntado. Formula una pregunta orientadora que obligue al estudiante a deducir esa relación por sí mismo.
+- Antes de entregar cualquier pista, verifica que el estudiante todavía necesite realizar una inferencia importante para llegar a la respuesta.
+- Cuando el estudiante responda, evalúa su explicación, identifica aciertos e imprecisiones y ofrece retroalimentación constructiva.
+- No reveles la solución completa salvo que el estudiante la solicite expresamente.
 """
 
 # El modelo se pasa al ejecutar (para sustituirlo en las pruebas por TestModel, que no llama a la API)
@@ -43,7 +51,7 @@ agent.tool_plain(tools.search_glossary)
 agent.tool_plain(tools.get_lecture_summary)
 
 # TODO(Lecture 03: ejercicio): crea make_quiz en tools.py y regístrala aquí
-
+agent.tool_plain(tools.make_quiz)
 # Lecture 05: archivo de configuración de servidores MCP. Mismo formato "mcpServers" que Claude Desktop y Cursor
 MCP_CONFIG = Path(__file__).resolve().parent / "mcp_servers.json"
 
