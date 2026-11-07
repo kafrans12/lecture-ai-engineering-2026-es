@@ -1,4 +1,4 @@
-# Lecture 05: respuestas
+# Lecture 06: respuestas
 
 ## Ejercicios
 

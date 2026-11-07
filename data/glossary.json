@@ -1,6 +1,6 @@
 {
   "version": "2026-draft-1",
-  "note": "Glosario provisional de Lecture 01, Lecture 02, Lecture 03 y Lecture 05 de AIE2026. El contenido se sustituirá cuando se finalicen las diapositivas de las clases.",
+  "note": "Glosario provisional de Lecture 01 a Lecture 04 y Lecture 06 de AIE2026. El contenido se sustituirá cuando se finalicen las diapositivas de las clases.",
   "terms": [
     {
       "id": "ai-engineering",
@@ -395,7 +395,7 @@
       "aliases": ["MCP", "Model Context Protocol"],
       "lecture": 3,
       "category": "Agentes",
-      "definition": "Protocolo estándar abierto para conectar aplicaciones de IA con herramientas y fuentes de datos externas. Las herramientas ofrecidas por un servidor MCP pueden usarse de forma común desde diversos agentes y editores compatibles (clientes MCP). En Lecture 05 lo experimentaremos creando un servidor MCP de búsqueda en el glosario.",
+      "definition": "Protocolo estándar abierto para conectar aplicaciones de IA con herramientas y fuentes de datos externas. Las herramientas ofrecidas por un servidor MCP pueden usarse de forma común desde diversos agentes y editores compatibles (clientes MCP). En Lecture 06 lo experimentaremos creando un servidor MCP de búsqueda en el glosario.",
       "related": ["tool", "ai-agent", "mcp-server", "mcp-client"]
     },
     {
@@ -465,7 +465,7 @@
       "id": "external-tool",
       "term": "Herramienta externa",
       "aliases": ["external tool", "servicio externo"],
-      "lecture": 5,
+      "lecture": 6,
       "category": "MCP",
       "definition": "Uso como herramientas de funciones externas al programa del agente, como obtener páginas web, operar sobre archivos, consultar bases de datos o llamar a API de terceros. Las herramientas de función de Lecture 03 se ejecutan en el mismo proceso; las externas se llaman entre procesos o máquinas diferentes. MCP proporciona un protocolo común para ello.",
       "related": ["tool", "mcp", "mcp-server"]
@@ -474,7 +474,7 @@
       "id": "mcp-server",
       "term": "Servidor MCP",
       "aliases": ["MCP server"],
-      "lecture": 5,
+      "lecture": 6,
       "category": "MCP",
       "definition": "Programa que ofrece herramientas (y también recursos o prompts) mediante MCP. Expone los nombres, las descripciones y los esquemas de argumentos de las herramientas; las ejecuta a petición del cliente y devuelve resultados. En este curso convertimos la búsqueda del glosario en un servidor MCP (app/mcp_server.py). También hay muchos servidores públicos ya existentes, como fetch, filesystem y GitHub.",
       "related": ["mcp", "mcp-client", "mcp-transport", "fetch-server"]
@@ -483,7 +483,7 @@
       "id": "mcp-client",
       "term": "Cliente MCP",
       "aliases": ["MCP client", "host MCP"],
-      "lecture": 5,
+      "lecture": 6,
       "category": "MCP",
       "definition": "Componente que se conecta al servidor MCP, pasa al modelo las herramientas disponibles y las llama siguiendo sus instrucciones. Pueden actuar como clientes programas de agentes (MCPToolset de Pydantic AI), editores o aplicaciones como Copilot Chat, Claude Desktop y Cursor. Una ventaja de MCP es poder usar el mismo servidor desde distintos clientes.",
       "related": ["mcp", "mcp-server", "mcp-config"]
@@ -492,7 +492,7 @@
       "id": "mcp-transport",
       "term": "Transporte (stdio y Streamable HTTP)",
       "aliases": ["stdio", "Streamable HTTP", "transport", "transporte MCP"],
-      "lecture": 5,
+      "lecture": 6,
       "category": "MCP",
       "definition": "Canal de comunicación entre cliente y servidor MCP. Con stdio, el cliente inicia el servidor como subproceso e intercambia mensajes por la entrada y la salida estándar (sencillo, dentro de una misma máquina). Con Streamable HTTP, el servidor escucha en una URL y acepta conexiones de otros procesos o máquinas (hay que considerar el alcance de acceso y la autenticación).",
       "related": ["mcp-server", "mcp-client"]
@@ -501,7 +501,7 @@
       "id": "mcp-config",
       "term": "Configuración mcpServers",
       "aliases": ["mcpServers", "archivo de configuración MCP", "mcp_servers.json", "mcp.json"],
-      "lecture": 5,
+      "lecture": 6,
       "category": "MCP",
       "definition": "Archivo que enumera los servidores MCP que se van a usar. Para cada servidor se indica un nombre y un comando de inicio (stdio) o una URL de conexión (HTTP). Claude Desktop, Cursor y Pydantic AI, entre otros, leen el formato mcpServers (VS Code y Copilot Chat usan servers). En este curso se usa app/mcp_servers.json. La idea central de la práctica de MCP es poder añadir herramientas con solo unas líneas de configuración.",
       "related": ["mcp-client", "tool-namespace"]
@@ -510,7 +510,7 @@
       "id": "tool-namespace",
       "term": "Espacio de nombres de herramientas",
       "aliases": ["prefijo del nombre de herramienta", "prefix", "colisión de nombres"],
-      "lecture": 5,
+      "lecture": 6,
       "category": "MCP",
       "definition": "Uso de prefijos como «nombre_del_servidor_nombre_de_herramienta» para distinguir herramientas con el mismo nombre al usar varios servidores MCP. app/agent.py añade automáticamente el nombre del servidor de la configuración (por ejemplo, glossary_search_glossary; load_mcp_toolsets de Pydantic AI hace lo mismo). Cuantas más herramientas haya, más descripciones recibe el modelo, lo que afecta a la precisión al elegir herramientas y al número de tokens.",
       "related": ["mcp-config", "tool-description", "rate-limit"]
@@ -519,10 +519,73 @@
       "id": "fetch-server",
       "term": "Servidor fetch",
       "aliases": ["mcp-server-fetch", "fetch", "herramienta de obtención de páginas web"],
-      "lecture": 5,
+      "lecture": 6,
       "category": "MCP",
       "definition": "Servidor MCP ya existente que obtiene la página de la URL indicada y devuelve su contenido en Markdown (escrito en Python, se inicia con uvx mcp-server-fetch). Se usa en el curso como ejemplo de «añadir herramientas externas con solo escribir la configuración». Accede realmente a las URL que elige el modelo; el usuario debe saber adónde se envían datos y qué se envía.",
       "related": ["mcp-server", "external-tool", "guardrail"]
+    },
+    {
+      "id": "evaluation-dataset",
+      "term": "Conjunto de evaluación",
+      "aliases": ["conjunto de datos de evaluación", "eval set", "conjunto de prueba"],
+      "lecture": 4,
+      "category": "Evaluación",
+      "definition": "Colección de entradas con las salidas esperadas o condiciones de aprobación, preparada para evaluar. Incluye deliberadamente casos normales y entradas que pueden provocar fallos (casos límite) para detectar dónde falla el sistema. En el ejercicio de Lecture 04, el alumnado etiqueta 10 casos preparados por el docente.",
+      "related": ["edge-case", "rubric", "llm-as-a-judge"]
+    },
+    {
+      "id": "edge-case",
+      "term": "Caso límite",
+      "aliases": ["edge case", "caso de frontera"],
+      "lecture": 4,
+      "category": "Evaluación",
+      "definition": "Entrada situada en los límites o con una forma imprevista: vacía, extremadamente larga, con variantes ortográficas, preguntas ajenas al ámbito o peticiones que intentan sustituir las instrucciones. Se incluye deliberadamente en el conjunto de evaluación para observar cómo se comportan el evaluador y el agente.",
+      "related": ["evaluation-dataset"]
+    },
+    {
+      "id": "rubric",
+      "term": "Rúbrica",
+      "aliases": ["rubric", "criterios de evaluación", "criterios de puntuación"],
+      "lecture": 4,
+      "category": "Evaluación",
+      "definition": "Descripción escrita, criterio por criterio, de las condiciones de aprobado y no aprobado. Se proporciona la misma rúbrica a personas y LLM. Si un asunto no está contemplado, ninguno puede decidirlo a partir de los criterios; cuando hay desacuerdos, se debe decidir una política y añadirla. En este curso corresponde a data/eval/rubric.md.",
+      "related": ["evaluation-dataset", "llm-as-a-judge", "needs-review"]
+    },
+    {
+      "id": "llm-as-a-judge",
+      "term": "LLM-as-a-Judge",
+      "aliases": ["evaluación con LLM", "LLM judge", "evaluación automática"],
+      "lecture": 4,
+      "category": "Evaluación",
+      "definition": "Método que proporciona criterios de evaluación (una rúbrica) a un LLM para que juzgue las salidas de otro modelo. Permite evaluar muchas salidas de forma rápida y barata, pero incorpora sesgos del evaluador, como preferir respuestas extensas o verse influido por el orden. Se comprueba su acuerdo con veredictos humanos antes de usarlo.",
+      "related": ["rubric", "agreement-rate", "position-bias", "structured-output"]
+    },
+    {
+      "id": "agreement-rate",
+      "term": "Tasa de acuerdo",
+      "aliases": ["agreement rate", "acuerdo con personas", "inter-rater agreement"],
+      "lecture": 4,
+      "category": "Evaluación",
+      "definition": "Proporción de casos en que dos evaluaciones coinciden (persona y LLM, o dos personas). Sirve como evidencia para confiar en el evaluador. Los criterios subjetivos también generan desacuerdos entre personas, por lo que el techo de acuerdo no es el 100 %.",
+      "related": ["llm-as-a-judge", "rubric"]
+    },
+    {
+      "id": "needs-review",
+      "term": "Requiere revisión",
+      "aliases": ["unsure", "revisión humana", "pendiente de revisión"],
+      "lecture": 4,
+      "category": "Evaluación",
+      "definition": "Remitir a revisión humana los elementos que no pueden decidirse automáticamente (aquellos a los que el LLM asigna unsure). Se excluyen del cálculo del acuerdo. Indican asuntos que los criterios no contemplan; se debe decidir una política y añadirla a los criterios.",
+      "related": ["rubric", "llm-as-a-judge"]
+    },
+    {
+      "id": "position-bias",
+      "term": "Sesgo de posición",
+      "aliases": ["position bias", "sesgo de orden"],
+      "lecture": 4,
+      "category": "Evaluación",
+      "definition": "Sesgo del evaluador por el que, al comparar dos respuestas para elegir la mejor, el orden de presentación influye en el veredicto en lugar del contenido. Se comprueba intercambiando el orden y observando si el resultado se mantiene. Es un sesgo habitual, junto con la preferencia por respuestas extensas.",
+      "related": ["llm-as-a-judge"]
     }
   ]
 }
