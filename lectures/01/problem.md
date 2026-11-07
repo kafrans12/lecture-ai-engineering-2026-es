@@ -91,4 +91,16 @@ Ejemplo de cambio de modelo:
 AIE_MODEL=gemini-3.5-flash uv run python -m app.ask "¿Qué es LoRA?"
 ```
 
+### Notas adicionales sobre el modelo que utilizas
+
+Las especificaciones de los modelos pueden cambiar.
+La documentación de la API de Gemini se ha actualizado: Gemini 3.5 Flash ha quedado obsoleto y redirige a Gemini 3.6 Flash.
+
+- Referencia: documentación de Gemini 3.5 Flash
+https://ai.google.dev/gemini-api/docs/models/gemini-3.5-flash?hl=es
+
+Como muestra este ejemplo, las especificaciones de los LLM ofrecidos como servicios cambian con frecuencia. Acostúmbrate a consultar la documentación del servicio para poder adaptarte a estos cambios.
+
+Para la tarea de Lecture 01, puedes utilizar el modelo que prefieras.
+
 Para cambiar temperature, investiga el argumento `config` de `generate_content`.

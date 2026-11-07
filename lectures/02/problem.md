@@ -39,7 +39,7 @@ En Colab, las variables se pierden al desconectarse la sesión, así que el día
 7. **Runtime → Disconnect and delete runtime**
 
 > El tiempo de GPU disponible en la cuota gratuita de Colab es limitado. Elimina siempre el entorno de ejecución al terminar.
-> Si no se te asigna una GPU o el entrenamiento no termina a tiempo, sigue el apartado 4b del cuaderno y continúa la comparación y el análisis con los resultados que el docente obtuvo en una T4. Al entregar, establece `executed_training_myself` en `False` e indica en answer.md hasta dónde pudiste ejecutar por tu cuenta.
+> Si no se te asigna una GPU o el entrenamiento no termina a tiempo, sigue el apartado 4b del cuaderno y continúa la comparación y el análisis con los resultados que el docente obtuvo en una T4 con la versión original en japonés. Al entregar, establece `executed_training_myself` en `False` e indica en answer.md hasta dónde pudiste ejecutar por tu cuenta.
 
 Aunque se fije la semilla, el entrenamiento en GPU no se reproduce de forma exacta. Es normal que tus «preguntas con fallos restantes» difieran de las de otra persona; compara los tipos de fallos.
 
@@ -49,7 +49,7 @@ Aunque se fije la semilla, el entrenamiento en GPU no se reproduce de forma exac
 |---|---|
 | Básico | Cambia uno de los valores `lora_r`, `lr` o `num_train_epochs` de `CONFIG` y vuelve a entrenar. Registra `format_rate`, `content_rate`, la pérdida final y el tiempo de entrenamiento junto a la configuración original. Tras cambiarlo, selecciona **Runtime → Restart session** y ejecuta desde el principio (el modelo entrenado sigue en memoria). Compara los dos archivos `result.json` |
 | Implementación | Sustituye `FAQ`, `GROUNDED` y `UNGROUNDED` por un tema propio (unas 5 entradas), entrena y compara antes y después. Conserva el formato JSON y el diseño de `needs_review`. Explica también cómo preparaste las preguntas «sin evidencia» |
-| Avanzado | Usa `scripts/make_sft_dataset.py` para crear pares de preguntas y respuestas del glosario del curso (JSONL en formato `messages`) y entrena con ellos en lugar de la FAQ. Prepara tus propias preguntas de evaluación (términos del glosario, preguntas reformuladas y términos ausentes del glosario) y sus respuestas correctas, y compara antes y después. Compara el resultado con el «agente que busca en el glosario» que crearás en Lecture 03 y analiza cuál conviene más |
+| Avanzado | Usa `scripts/make_sft_dataset.py` para crear pares de preguntas y respuestas del glosario del curso (JSONL en formato `messages`) y entrena con ellos en lugar de la FAQ. Prepara tus propias preguntas de evaluación (términos del glosario, preguntas reformuladas y términos ausentes del glosario) y sus respuestas correctas, y compara antes y después. Compara el entrenamiento del modelo con un mecanismo de búsqueda en el glosario y analiza las ventajas y desventajas de entrenarlo |
 
 Crear los datos para el nivel avanzado (ejecuta en Codespaces y sube el archivo generado a Colab):
 

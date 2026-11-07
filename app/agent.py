@@ -16,7 +16,7 @@ import inspect
 import json
 from pathlib import Path
 
-from pydantic_ai import Agent
+from pydantic_ai import Agent, DeferredToolRequests, DeferredToolResults
 from pydantic_ai.exceptions import ModelHTTPError
 from fastmcp import Client
 from pydantic_ai.mcp import MCPToolset, StdioTransport
@@ -30,19 +30,53 @@ from app.config import MODEL, api_error_message, get_api_key
 
 INSTRUCTIONS = """\
 Eres un agente de apoyo al aprendizaje de AI Engineering Pilot Course (AIE2026).
+
+REGLAS GENERALES:
 - Antes de responder sobre términos o detalles específicos del curso, consulta siempre el glosario con search_glossary.
 - Usa get_lecture_summary si te preguntan por el contenido de una sesión.
 - Si algo no aparece en el glosario, indica «No aparece en el glosario» en lugar de afirmar una suposición.
 - Al final de la respuesta, indica la sesión relacionada (Lecture NN).
 - Orienta mediante pistas para razonar, sin escribir directamente la solución de la tarea.
+
+QUIZZES Y APRENDIZAJE GUIADO:
+- Cuando el usuario solicite un quiz, utiliza make_quiz para generar una pregunta de la sesión indicada.
+- Presenta una sola pregunta a la vez y no muestres su respuesta.
+- Si el estudiante solicita una primera pista, ofrece una analogía o contexto general relacionado con el concepto, sin mencionar su definición ni sus propiedades distintivas.
+- Si solicita una segunda pista, ofrece una relación técnica que permita razonar sobre el concepto, pero no identifiques directamente qué representa el término preguntado. Formula una pregunta orientadora que obligue al estudiante a deducir esa relación por sí mismo.
+- Antes de entregar cualquier pista, verifica que el estudiante todavía necesite realizar una inferencia importante para llegar a la respuesta.
+- Cuando el estudiante responda, evalúa su explicación, identifica aciertos e imprecisiones y ofrece retroalimentación constructiva.
+- No reveles la solución completa salvo que el estudiante la solicite expresamente.
+
+REGISTRO DE APRENDIZAJE (save_learning_log):
+- Utiliza save_learning_log únicamente cuando el estudiante solicite explícitamente guardar sus apuntes o registrar un aprendizaje.
+- No guardes información automáticamente durante consultas, explicaciones o quizzes.
+- Identifica el tema (topic) y los apuntes (notes) a partir de la solicitud del estudiante.
+- Conserva fielmente el significado de los apuntes. No inventes información ni agregues conclusiones que el estudiante no haya proporcionado.
+- Si falta información esencial para identificar el tema o el contenido, solicita una aclaración antes de intentar guardar.
+- No solicites información adicional cuando el tema y los apuntes ya estén suficientemente definidos.
+- La herramienta modifica archivos y requiere autorización humana antes de ejecutarse.
+- No afirmes que el registro fue guardado mientras la operación esté pendiente de aprobación.
+- Si la operación es aprobada y se ejecuta correctamente, confirma que los apuntes fueron guardados.
+- Si la operación es rechazada, respeta la decisión del estudiante y no vuelvas a solicitar la misma escritura durante esa interacción.
+- Después de un rechazo, informa brevemente que los apuntes no fueron guardados.
+- Si ocurre un error al guardar, informa del fallo sin afirmar que la operación fue exitosa.
+- No intentes eludir el mecanismo de aprobación ni utilizar otras herramientas para realizar la escritura.
+- No afirmes que puedes editar, eliminar o recuperar registros anteriores mediante esta herramienta, porque esas operaciones no están implementadas.
 """
 
+
+
 # El modelo se pasa al ejecutar (para sustituirlo en las pruebas por TestModel, que no llama a la API)
-agent = Agent(instructions=INSTRUCTIONS)
+agent = Agent(
+    instructions=INSTRUCTIONS,
+    output_type=[str, DeferredToolRequests],
+)
 agent.tool_plain(tools.search_glossary)
 agent.tool_plain(tools.get_lecture_summary)
 
 # TODO(Lecture 03: ejercicio): crea make_quiz en tools.py y regístrala aquí
+agent.tool_plain(tools.make_quiz)
+agent.tool_plain(tools.save_learning_log, requires_approval=True)
 
 # Lecture 05: archivo de configuración de servidores MCP. Mismo formato "mcpServers" que Claude Desktop y Cursor
 MCP_CONFIG = Path(__file__).resolve().parent / "mcp_servers.json"
@@ -109,6 +143,36 @@ def print_trace(result) -> None:
                 print(f"[tool return] {part.tool_name} -> {str(part.content)[:120]}…")
     print(f"[usage] {result.usage}")
 
+def process_approvals(requests, rejected_tools):
+    """Procesa aprobaciones y bloquea herramientas rechazadas en esta ejecución."""
+    decisions = {}
+
+    for call in requests.approvals:
+        tool_name = call.tool_name
+
+        # Bloquea cualquier reintento de una herramienta rechazada.
+        if tool_name in rejected_tools:
+            decisions[call.tool_call_id] = False
+            print(
+                f"\n[Rechazo automático] "
+                f"{tool_name}: herramienta previamente rechazada."
+            )
+            continue
+
+        print(f"\n[Solicitud de aprobación] {tool_name}")
+        print(f"Argumentos: {call.args}")
+
+        answer = input("¿Autorizar esta operación? [s/N]: ")
+        approved = answer.strip().lower() == "s"
+
+        decisions[call.tool_call_id] = approved
+
+        if not approved:
+            rejected_tools.add(tool_name)
+
+        print("[Aprobada]" if approved else "[Rechazada]")
+
+    return decisions
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Hacer una pregunta al agente de apoyo al aprendizaje")
@@ -129,11 +193,52 @@ def main() -> None:
     if args.mcp:
         print("[tools] Servidores MCP (app/mcp_servers.json)")
     try:
-        result = target.run_sync(args.question, model=build_model())
+        model = build_model()
+        result = target.run_sync(args.question, model=model)
+
+        max_approval_rounds = 3
+        approval_rounds = 0
+        rejected_tools = set()
+
+        while isinstance(result.output, DeferredToolRequests):
+            approval_rounds += 1
+
+            if approval_rounds > max_approval_rounds:
+                raise RuntimeError(
+                    "Se alcanzó el límite de rondas de autorización."
+                )
+            requests = result.output
+
+            if requests.calls:
+                raise RuntimeError(
+                    "Hay llamadas diferidas que este CLI todavía no gestiona."
+                )
+
+            if not requests.approvals:
+                raise RuntimeError(
+                    "El agente devolvió una solicitud diferida sin aprobaciones."
+                )
+
+            decisions = process_approvals(
+                requests,
+                rejected_tools,
+            )
+
+            result = target.run_sync(
+                "Continúa con el resultado de la autorización.",
+                model=model,
+                message_history=result.all_messages(),
+                deferred_tool_results=DeferredToolResults(
+                    approvals=decisions
+                ),
+            )
+
     except ModelHTTPError as e:
         print(api_error_message(e.status_code, str(e.body)[:200]))
         raise SystemExit(1)
+
     print(result.output)
+
     if args.trace:
         print_trace(result)
 
