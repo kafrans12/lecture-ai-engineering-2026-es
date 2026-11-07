@@ -16,3 +16,6 @@ venv/
 
 # Archivos del editor
 .vscode/
+
+# Registros de aprendizaje generados por el agente
+learning_log/

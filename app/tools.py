@@ -112,3 +112,21 @@ def make_quiz(lecture: int) -> str:
         },
         ensure_ascii=False,
     )
+
+
+def save_learning_log(topic: str, notes: str) -> str:
+    """Guarda un registro de aprendizaje en un archivo Markdown.
+
+    Úsala cuando el estudiante solicite explícitamente guardar
+    sus apuntes o registrar lo aprendido sobre un tema.
+    Esta operación modifica archivos y requiere aprobación humana.
+    """
+    log_dir = Path(__file__).resolve().parent.parent / "learning_log"
+    log_dir.mkdir(parents=True, exist_ok=True)
+
+    log_path = log_dir / "learning_log.md"
+
+    with log_path.open("a", encoding="utf-8") as file:
+        file.write(f"\n## {topic}\n\n{notes}\n")
+
+    return f"Registro de aprendizaje guardado en {log_path}"
