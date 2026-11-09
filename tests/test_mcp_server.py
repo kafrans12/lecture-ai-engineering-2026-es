@@ -1,4 +1,4 @@
-"""Lecture 05: pruebas de conexión entre servidor y cliente MCP (sin LLM ni clave API).
+"""Lecture 06: pruebas de conexión entre servidor y cliente MCP (sin LLM ni clave API).
 
 Inicia realmente el servidor glossary de app/mcp_servers.json (stdio) y usa TestModel
 para comprobar «si las herramientas se exponen mediante MCP, se llaman y devuelven resultados».
