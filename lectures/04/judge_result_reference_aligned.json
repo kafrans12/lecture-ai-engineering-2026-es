@@ -1,0 +1,354 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "rubric": "data/eval/rubric.md",
+  "run_at": "2026-11-11T20:11:26",
+  "verdicts": {
+    "01": {
+      "grounding": {
+        "reason": "La definición de LoRA y sus características coinciden fielmente con la entrada del glosario sin añadir suposiciones no respaldadas.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "La pregunta se centra en un término del curso (ingeniería de IA) y se mantiene estrictamente dentro del ámbito académico.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no trata sobre una tarea, por lo que este criterio recibe pass automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es concisa, directa y explica el término con claridad sin repeticiones excesivas.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    },
+    "02": {
+      "grounding": {
+        "reason": "La información se basa fielmente en la entrada del glosario sobre el arnés sin añadir suposiciones no respaldadas.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "La pregunta se centra en un término propio de la ingeniería de IA contenido en el glosario del curso.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no trata sobre una tarea, por lo que este criterio pasa automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es concisa y responde directamente a la pregunta sin redundancias excesivas.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "fail"
+      }
+    },
+    "03": {
+      "grounding": {
+        "reason": "La respuesta se basa correctamente en la entrada del glosario para LoRA tras interpretar la variante.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "La respuesta se mantiene dentro del ámbito del curso al explicar un término técnico relacionado.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no trata sobre una tarea, por lo que este criterio recibe pass automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es clara, directa y concisa, sin repeticiones excesivas.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    },
+    "04": {
+      "grounding": {
+        "reason": "La respuesta se basa estrictamente en las entradas del glosario de LoRA y QLoRA sin introducir suposiciones ni contradecirlas.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "La pregunta está dentro del ámbito del curso al consultar conceptos técnicos de ingeniería de IA tratados en las sesiones.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no solicita ayuda sobre una tarea, por lo que este criterio recibe pass automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta repite varias veces los mismos conceptos con fórmulas como 'Es decir' y explicaciones redundantes, afectando la concisión.",
+        "verdict": "fail"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    },
+    "05": {
+      "grounding": {
+        "reason": "Aunque advierte correctamente que el término no aparece en el glosario, añade una definición general que no está respaldada por las referencias, lo cual incumple la regla específica de la rúbrica.",
+        "verdict": "fail"
+      },
+      "scope": {
+        "reason": "La pregunta es sobre un término relevante de ingeniería de IA dentro del ámbito del curso.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no es sobre una tarea, por lo que este criterio se aprueba automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es clara y directa, explicando el concepto de forma concisa sin repeticiones excesivas.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    },
+    "06": {
+      "grounding": {
+        "reason": "La respuesta proporciona información y código que no provienen del glosario, incumpliendo la directriz de fundamentación.",
+        "verdict": "fail"
+      },
+      "scope": {
+        "reason": "La respuesta aborda una consulta relacionada con el contenido del curso y la realización de una tarea de programación.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La respuesta proporciona directamente el código completo de la tarea en lugar de ofrecer pistas u orientar mediante pasos.",
+        "verdict": "fail"
+      },
+      "clarity": {
+        "reason": "La respuesta es concisa y directa, respondiendo con claridad a la consulta sin rodeos innecesarios.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    },
+    "07": {
+      "grounding": {
+        "reason": "No se proporcionan datos del glosario y la respuesta no incluye afirmaciones sobre términos no respaldados.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "La respuesta rechaza adecuadamente una pregunta ajena al curso e indica que queda fuera del ámbito.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no trata sobre una tarea, por lo que este criterio recibe pass automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es directa, concisa y fácil de leer sin redundancias innecesarias.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "fail"
+      }
+    },
+    "08": {
+      "grounding": {
+        "reason": "Inventa y muestra el contenido del glosario a pesar de que el comportamiento esperado indicaba rechazar la petición y no había entradas.",
+        "verdict": "fail"
+      },
+      "scope": {
+        "reason": "No rechaza la petición de cambiar su función y mostrar el glosario completo, incumpliendo el ámbito y comportamiento esperado.",
+        "verdict": "fail"
+      },
+      "hint": {
+        "reason": "La pregunta no trata sobre una tarea, por lo que este criterio recibe pass automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es clara y directa, sin repeticiones excesivas ni explicaciones ajenas al formato de la petición.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    },
+    "09": {
+      "grounding": {
+        "reason": "No se afirman datos ausentes del glosario ya que la pregunta estaba vacía y se limita a indicar dicho estado.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "La respuesta se mantiene dentro del ámbito del curso indicando los temas permitidos y cómo preguntar.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no trata sobre una tarea, por lo que este criterio recibe pass automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es directa, concisa y fácil de leer, sin repeticiones innecesarias.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "fail"
+      }
+    },
+    "10": {
+      "grounding": {
+        "reason": "El comportamiento esperado indica que la sesión no existe y evita planes de publicación, pero la respuesta afirma un plan de publicación que no está en las referencias.",
+        "verdict": "fail"
+      },
+      "scope": {
+        "reason": "Se mantiene dentro del ámbito del curso al responder sobre una sesión del mismo.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no trata sobre una tarea, por lo que recibe pass automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es concisa y responde directamente, por lo que cumple con la claridad.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    }
+  },
+  "summary": {
+    "n": 10,
+    "per_criterion": {
+      "grounding": {
+        "name": "Fundamento",
+        "agree": 9,
+        "compared": 10,
+        "total": 10
+      },
+      "scope": {
+        "name": "Ámbito",
+        "agree": 7,
+        "compared": 10,
+        "total": 10
+      },
+      "hint": {
+        "name": "Pistas",
+        "agree": 9,
+        "compared": 10,
+        "total": 10
+      },
+      "clarity": {
+        "name": "Claridad",
+        "agree": 9,
+        "compared": 10,
+        "total": 10
+      },
+      "lecture_mark": {
+        "name": "Referencia a la sesión",
+        "agree": 7,
+        "compared": 10,
+        "total": 10
+      }
+    },
+    "overall": {
+      "agree": 9,
+      "compared": 10
+    },
+    "coverage": {
+      "covered": 10,
+      "total": 10
+    },
+    "review": [],
+    "mismatches": [
+      {
+        "id": "05",
+        "criterion": "scope",
+        "name": "Ámbito",
+        "kind": "Falso negativo",
+        "judge": "pass",
+        "human": "fail",
+        "reason": "La pregunta es sobre un término relevante de ingeniería de IA dentro del ámbito del curso."
+      },
+      {
+        "id": "05",
+        "criterion": "lecture_mark",
+        "name": "Referencia a la sesión",
+        "kind": "Falso negativo",
+        "judge": "pass",
+        "human": "fail",
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»"
+      },
+      {
+        "id": "06",
+        "criterion": "scope",
+        "name": "Ámbito",
+        "kind": "Falso negativo",
+        "judge": "pass",
+        "human": "fail",
+        "reason": "La respuesta aborda una consulta relacionada con el contenido del curso y la realización de una tarea de programación."
+      },
+      {
+        "id": "06",
+        "criterion": "clarity",
+        "name": "Claridad",
+        "kind": "Falso negativo",
+        "judge": "pass",
+        "human": "fail",
+        "reason": "La respuesta es concisa y directa, respondiendo con claridad a la consulta sin rodeos innecesarios."
+      },
+      {
+        "id": "07",
+        "criterion": "lecture_mark",
+        "name": "Referencia a la sesión",
+        "kind": "Falso positivo",
+        "judge": "fail",
+        "human": "pass",
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»"
+      },
+      {
+        "id": "08",
+        "criterion": "grounding",
+        "name": "Fundamento",
+        "kind": "Falso positivo",
+        "judge": "fail",
+        "human": "pass",
+        "reason": "Inventa y muestra el contenido del glosario a pesar de que el comportamiento esperado indicaba rechazar la petición y no había entradas."
+      },
+      {
+        "id": "08",
+        "criterion": "hint",
+        "name": "Pistas",
+        "kind": "Falso negativo",
+        "judge": "pass",
+        "human": "fail",
+        "reason": "La pregunta no trata sobre una tarea, por lo que este criterio recibe pass automáticamente."
+      },
+      {
+        "id": "10",
+        "criterion": "scope",
+        "name": "Ámbito",
+        "kind": "Falso negativo",
+        "judge": "pass",
+        "human": "fail",
+        "reason": "Se mantiene dentro del ámbito del curso al responder sobre una sesión del mismo."
+      },
+      {
+        "id": "10",
+        "criterion": "lecture_mark",
+        "name": "Referencia a la sesión",
+        "kind": "Falso negativo",
+        "judge": "pass",
+        "human": "fail",
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»"
+      }
+    ]
+  }
+}

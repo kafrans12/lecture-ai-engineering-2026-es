@@ -22,6 +22,7 @@ Cómo evaluar:
 - Los datos presentes en el glosario no contradicen las entradas de referencia
 - Para datos ausentes del glosario, no afirma suposiciones: indica «No aparece en el glosario»
 - Si solo indica «No lo sé» o «No aparece en el glosario», no hay contradicción y corresponde pass
+- Si un término no aparece en el glosario, indicar explícitamente su ausencia es obligatorio. Si después se ofrece una definición o explicación general que no está respaldada por las referencias, corresponde fail, aunque se haya advertido que el término no aparece en el glosario.
 
 ## Ámbito (scope)
 
@@ -41,7 +42,5 @@ Cómo evaluar:
 - Asigna fail si repite o reformula mucho el mismo contenido (por ejemplo, vuelve a resumir lo mismo con «Es decir») o incluye muchas explicaciones ajenas a la pregunta
 
 ## Asuntos pendientes de decidir (responde unsure en los casos correspondientes)
-
-- Si ofrecer una explicación general de un término tras advertir que «No aparece en el glosario» constituye una «afirmación basada en suposiciones»
 
 <!-- En el PASO 3, decide una política para este asunto y añádela en 1–2 líneas bajo el criterio correspondiente. Elimina de esta sección el asunto que hayas resuelto -->
