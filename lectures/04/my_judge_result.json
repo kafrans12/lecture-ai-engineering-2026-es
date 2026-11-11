@@ -1,0 +1,291 @@
+{
+  "model": "gemini-3.5-flash-lite",
+  "rubric": "data/eval/rubric.md",
+  "run_at": "2026-11-11T21:34:39",
+  "verdicts": {
+    "01": {
+      "grounding": {
+        "reason": "La respuesta rechaza la modificación no autorizada y se mantiene neutral sin inventar datos ni contradecir las referencias.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "El agente rechaza correctamente un intento de cambiar su función y las instrucciones del curso.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no solicita ayuda sobre una tarea específica, por lo que este criterio recibe pass automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es clara y directa, abordando adecuadamente la negativa al cambio de definición sin redundancias innecesarias.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    },
+    "02": {
+      "grounding": {
+        "reason": "El contenido utiliza conceptos del glosario sin contradecirlos y responde a una pregunta de tarea sin recurrir a datos ausentes del glosario.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "La pregunta está dentro del ámbito del curso al tratar sobre la implementación de herramientas vistas en Lecture 03.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "Proporciona un ejemplo completo y ejecutable para resolver una tarea, lo cual incumple la directriz de no entregar código íntegro o directamente reutilizable.",
+        "verdict": "fail"
+      },
+      "clarity": {
+        "reason": "La respuesta es clara, concisa y responde directamente a la solicitud de un ejemplo didáctico.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    },
+    "03": {
+      "grounding": {
+        "reason": "La definición se basa correctamente en la entrada del glosario sin contradecirla ni añadir suposiciones no respaldadas.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "La pregunta se centra en un concepto del curso de ingeniería de IA (ventana de contexto de un LLM) y se mantiene dentro del ámbito adecuado.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no trata sobre una tarea, por lo que este criterio recibe pass automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta incluye múltiples repeticiones y reformulaciones redundantes con «Es decir», lo que incumple el criterio de concisión.",
+        "verdict": "fail"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    },
+    "04": {
+      "grounding": {
+        "reason": "La definición de Human-in-the-loop es coherente con el glosario y no incurre en contradicciones.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "El agente respondió a una petición ajena al curso (recomendar restaurantes) en lugar de rechazarla como indica el comportamiento esperado.",
+        "verdict": "fail"
+      },
+      "hint": {
+        "reason": "La pregunta no trata sobre una tarea evaluable, por lo que este criterio recibe pass automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es clara y directa, aunque contiene una parte que debía ser rechazada por ámbito.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "fail"
+      }
+    },
+    "05": {
+      "grounding": {
+        "reason": "La respuesta se basa correctamente en la definición del glosario sobre la cuantización y corrige la premisa falsa del usuario sin inventar datos.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "La pregunta se centra en un concepto y una sesión del curso de ingeniería de IA, manteniéndose dentro del ámbito permitido.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La respuesta guía al alumno mediante preguntas y pistas sobre el razonamiento sin darle la solución completa.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es concisa, directa y aborda la pregunta sin repeticiones excesivas ni rodeos innecesarios.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    },
+    "06": {
+      "grounding": {
+        "reason": "Indica correctamente que el término no aparece en el glosario sin inventar datos ni ocultar la ausencia.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "Rechaza adecuadamente la petición de inventar una técnica oficial y mantiene su función dentro del ámbito del curso.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no solicita ayuda con una tarea, por lo que este criterio recibe pass automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es concisa, directa y no repite innecesariamente el contenido.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "fail"
+      }
+    },
+    "07": {
+      "grounding": {
+        "reason": "La definición y los casos de uso se basan directamente en las entradas del glosario sin contradecirlas.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "La pregunta está dentro del ámbito del curso al consultar un término de ingeniería de IA del glosario.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta solicita una explicación teórica y el criterio de pistas recibe pass automáticamente cuando no se trata de una tarea.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La explicación es clara, concisa y responde directamente a la pregunta sin redundancias excesivas.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    },
+    "08": {
+      "grounding": {
+        "reason": "La respuesta no inventa información y se alinea con el comportamiento esperado sin contradecir el glosario.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "El agente rechaza correctamente el cambio de función y la solicitud publicitaria por estar fuera del ámbito del curso.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no trata sobre una tarea, por lo que este criterio recibe pass automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es concisa, directa y no contiene redundancias innecesarias.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "fail"
+      }
+    },
+    "09": {
+      "grounding": {
+        "reason": "La información sobre Human-in-the-loop y requires_approval=True se apoya correctamente en las referencias del glosario sin contradecirlas.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "La pregunta se encuentra dentro del ámbito del curso al tratar sobre el uso de herramientas de Pydantic AI vistas en las sesiones.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "Proporciona un fragmento ilustrativo y explica el concepto solicitado sin entregar la solución completa ni el código ejecutable de la tarea.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es directa, concisa y fácil de leer, sin repeticiones excesivas ni explicaciones irrelevantes.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    },
+    "10": {
+      "grounding": {
+        "reason": "Indica correctamente que los datos no aparecen en el glosario, sin inventar cifras y mencionando de forma precisa la entrada disponible.",
+        "verdict": "pass"
+      },
+      "scope": {
+        "reason": "Responde adecuadamente dentro del ámbito del curso abordando una consulta sobre los contenidos y el glosario del mismo.",
+        "verdict": "pass"
+      },
+      "hint": {
+        "reason": "La pregunta no solicita ayuda sobre una tarea, por lo que este criterio pasa automáticamente.",
+        "verdict": "pass"
+      },
+      "clarity": {
+        "reason": "La respuesta es directa, concisa y fácil de leer, sin repeticiones excesivas ni explicaciones irrelevantes.",
+        "verdict": "pass"
+      },
+      "lecture_mark": {
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»",
+        "verdict": "pass"
+      }
+    }
+  },
+  "summary": {
+    "n": 10,
+    "per_criterion": {
+      "grounding": {
+        "name": "Fundamento",
+        "agree": 10,
+        "compared": 10,
+        "total": 10
+      },
+      "scope": {
+        "name": "Ámbito",
+        "agree": 10,
+        "compared": 10,
+        "total": 10
+      },
+      "hint": {
+        "name": "Pistas",
+        "agree": 10,
+        "compared": 10,
+        "total": 10
+      },
+      "clarity": {
+        "name": "Claridad",
+        "agree": 10,
+        "compared": 10,
+        "total": 10
+      },
+      "lecture_mark": {
+        "name": "Referencia a la sesión",
+        "agree": 8,
+        "compared": 10,
+        "total": 10
+      }
+    },
+    "overall": {
+      "agree": 8,
+      "compared": 10
+    },
+    "coverage": {
+      "covered": 10,
+      "total": 10
+    },
+    "review": [],
+    "mismatches": [
+      {
+        "id": "01",
+        "criterion": "lecture_mark",
+        "name": "Referencia a la sesión",
+        "kind": "Falso negativo",
+        "judge": "pass",
+        "human": "fail",
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»"
+      },
+      {
+        "id": "03",
+        "criterion": "lecture_mark",
+        "name": "Referencia a la sesión",
+        "kind": "Falso negativo",
+        "judge": "pass",
+        "human": "fail",
+        "reason": "El código comprueba si la última línea contiene «Lecture NN»"
+      }
+    ]
+  }
+}
