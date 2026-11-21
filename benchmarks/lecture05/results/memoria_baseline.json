@@ -1,0 +1,92 @@
+{
+  "case_id": 6,
+  "slug": "memoria",
+  "question": "¿Por qué necesitan memoria los agentes y cómo pueden conservar información entre sesiones?",
+  "variant": "baseline",
+  "expand_neighbors": false,
+  "created_at_utc": "2026-11-21T18:49:42.365391+00:00",
+  "reference_status": "candidate_unverified_relevance",
+  "candidate_page_ids": [
+    "lec03-main-p038",
+    "lec03-main-p039",
+    "lec03-main-p040"
+  ],
+  "candidate_pages_found": [
+    "lec03-main-p038",
+    "lec03-main-p039",
+    "lec03-main-p040"
+  ],
+  "candidate_coverage": 1.0,
+  "total_pages": 5,
+  "unique_pages": 5,
+  "context_characters": 4201,
+  "page_ids": [
+    "lec03-main-p013",
+    "lec03-main-p038",
+    "lec03-main-p039",
+    "lec03-main-p040",
+    "lec03-main-p065"
+  ],
+  "results": [
+    {
+      "page_id": "lec03-main-p013",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 2: Construir un agente",
+      "title": "Memoria",
+      "page": 13,
+      "content": "Memoria\nEl contexto es finito. Al empezar un chat nuevo, queremos un sistema que consulte el contexto anterior.\nFuente: diagrama ilustrativo. Dónde se guarda (archivos, base de datos, etc.) y cómo se busca (todo, búsqueda, etc.) depende de la implementación.\nChat anterior\nAyer: pedí arreglar una prueba\n• Quiero ejecutarla con pytest\n• La causa era el rango de range\n• Me pidieron escribir\n“comentarios en español”\n①\nEscribir\nMemoria (externa)\nEjecutar las pruebas con pytest\nCuidado con los límites de range\nComentarios en español\n②\nRecuperar\nContexto nuevo\nMemoria: ejecutar con pytest /\ncomentarios en español\nMensaje: falla otra prueba,\narréglala también\nRecordar ≠ aprender.",
+      "citation": "Lecture 3 · PDF traducido, p. 13",
+      "distance": 0.2643188536167145
+    },
+    {
+      "page_id": "lec03-main-p038",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 6: Memoria",
+      "title": "Sin memoria, cada vez se empieza de cero",
+      "page": 38,
+      "content": "Sin memoria, cada vez se empieza de cero\nSi mañana vuelves a pedir “arregla la prueba que falla”, ¿podrá usar la causa que encontró la vez anterior?\nFuente: elaborado a partir de Luo et al., “From Storage to Experience”, arXiv:2605.06716 (2026/5/7, ACL 2026 Findings), §1 y §3.2; Ding et al., “Always-On Agents”, arXiv:2606.30306 (2026/6/29); Anthropic, “Compaction overview” (Claude Platform Docs, consultado 2026/10/21).\n1\nEmpezar de cero cada vez\nVolver a explicar\nlo ya decidido\n2\nRepetir los mismos errores\nVolver a buscar la causa\nya encontrada\n3\nLas tareas largas se cortan\nAl llegar al límite del contexto\nse pierde el progreso\nSi se guarda todo, vuelven también la información vieja y los errores. Hay que diseñar qué conservar y qué borrar.",
+      "citation": "Lecture 3 · PDF traducido, p. 37",
+      "distance": 0.27681735157966614
+    },
+    {
+      "page_id": "lec03-main-p039",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 6: Memoria",
+      "title": "Implementación: Claude",
+      "page": 39,
+      "content": "Implementación: Claude\nEl ejemplo de Claude: hay mecanismos dentro de una sesión y otros entre sesiones\nFuente: Anthropic, “Compaction overview” y “Memory tool” (Claude Platform Docs), “How Claude remembers your project” (Claude Code Docs), todos consultados 2026/10/21. Packer et al. (2023), arXiv:2310.08560.\nDentro del contexto (misma sesión)\nCompactación (resumir el historial)\nSustituye el historial antiguo por un resumen.\nAlmacenamiento externo (entre sesiones)\nHerramienta de memoria (Claude API)\nEl modelo pide archivos de /memories\ny la app los gestiona en su almacenamiento\nMemoria automática (Claude Code)\nClaude escribe sus propias notas\ny lee cada vez las primeras 200 líneas o 25 KB\nEscribir\nSi hace falta,el agente las vuelve a leer\nLa memoria escrita entra en el contexto siguiente. Una persona revisa su contenido.\nTambién existe el riesgo de escrituras externas.",
+      "citation": "Lecture 3 · PDF traducido, p. 38",
+      "distance": 0.2846285402774811
+    },
+    {
+      "page_id": "lec03-main-p040",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 6: Memoria",
+      "title": "Implementación: OpenClaw",
+      "page": 40,
+      "content": "Implementación: OpenClaw\nCada noche relee las conversaciones pasadas y pasa a la memoria a largo plazo solo lo que vale la pena.\nFuente: OpenClaw Docs, “Memory overview” y “Memory architecture”, a oct. de 2026. Descripción de cada etapa resumida.\nNotas diarias (memory/fecha.md)\nNota del 10/24\nNota del 10/25\nNota del 10/26\nCada noche, automáticamente\nRevisión (dreaming)\n1 Reunir: quitar duplicados y listar candidatos\n2 Comparar: buscar temas recurrentes\n3 Mover: conservar solo lo que supera el umbral\nMEMORY.md (memoria a largo plazo)　se carga al inicio de la siguiente conversación\nNadie tiene que ordenarla a mano\nNo se guarda todo\nUna consulta puntual queda solo en las notas diarias. La memoria a largo plazo no se infla.",
+      "citation": "Lecture 3 · PDF traducido, p. 39",
+      "distance": 0.2940909266471863
+    },
+    {
+      "page_id": "lec03-main-p065",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Anexo",
+      "title": "Anexo: novedades en memoria y Context Engineering",
+      "page": 65,
+      "content": "Anexo: novedades en memoria y Context Engineering\nEl resumen del historial (compactación) y la memoria basada en archivos ya se ofrecen como funciones de la API. Siguen siendo guardar y reinyectar.\nQué ha cambiado\nElemento\nCambios\nFecha\nCompactación automática\nAPI que resume el historial en el servidor, disponible en beta\n2026/2/5\nCompactación en cualquier momento\nLa aplicación decide cuándo resumir. Las imágenes y documentos del tramo resumido se pierden\nBeta del 2026/9/14\nHerramienta de memoria\nEl modelo pide operaciones con archivos y la aplicación las ejecuta en su propio almacenamiento. Ya no requiere indicar beta\n2026/2/17\nRelación con la clase: la compactación comprime el “historial dentro del loop”; la herramienta de memoria es el “registro entre sesiones”. Los pesos no cambian.\nPrecauciones: el almacenamiento es responsabilidad de la aplicación; valida rutas que apunten fuera de él. Las instrucciones perdidas al resumir dejan de aplicarse.\nFuente: Anthropic “Claude Platform release notes” (2026/2/5, 2/17, 9/14), “Memory tool”, documentación de compactación en cualquier momento (estos dos sin fecha). Información verificada el 2026/10/9",
+      "citation": "Lecture 3 · PDF traducido, p. 63",
+      "distance": 0.3095027208328247
+    }
+  ]
+}

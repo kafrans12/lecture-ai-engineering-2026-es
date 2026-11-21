@@ -1,0 +1,90 @@
+{
+  "case_id": 4,
+  "slug": "lora_qlora",
+  "question": "¿Qué diferencias existen entre LoRA y QLoRA para ajustar modelos grandes?",
+  "variant": "baseline",
+  "expand_neighbors": false,
+  "created_at_utc": "2026-11-21T18:42:05.648128+00:00",
+  "reference_status": "candidate_unverified_relevance",
+  "candidate_page_ids": [
+    "lec02-main-p051",
+    "lec02-main-p052"
+  ],
+  "candidate_pages_found": [
+    "lec02-main-p051",
+    "lec02-main-p052"
+  ],
+  "candidate_coverage": 1.0,
+  "total_pages": 5,
+  "unique_pages": 5,
+  "context_characters": 6189,
+  "page_ids": [
+    "lec02-main-p052",
+    "lec02-main-p051",
+    "lec02-main-p060",
+    "lec02-main-p047",
+    "lec02-main-p061"
+  ],
+  "results": [
+    {
+      "page_id": "lec02-main-p052",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Cuándo y cómo ajustar el modelo elegido",
+      "title": "LoRA y QLoRA: ajustar modelos grandes con una sola GPU",
+      "page": 52,
+      "content": "LoRA y QLoRA: ajustar modelos grandes con una sola GPU\n4/4 — Cuándo y cómo ajustar el modelo elegido.\nLoRA fija los pesos originales y entrena solo una pequeña diferencia. QLoRA añade compresión de los pesos originales a 4bit.\nFuentes: E. J. Hu et al., «LoRA», ICLR 2022; T. Dettmers et al., «QLoRA», NeurIPS 2023. El ejercicio usa transformers, peft, bitsandbytes y TRL.\n\nLoRA, figura 1 de Hu et al.: entrenar solo A y B.\nAzul: pesos originales W. Se mantienen fijos, sin entrenar. En QLoRA se almacenan a 4bit, con menor precisión, y ocupan aproximadamente 1/4; unos 4GB para 7B.\nNaranja: pequeñas matrices A y B. Solo se entrenan estas. El producto de 2 matrices estrechas expresa el cambio, con rango bajo.\nImagen intuitiva: dejar intacto el cuerpo del modelo y añadir una fina nota adhesiva. Se puede entrenar menos del 1% del total.\n\nEl artículo QLoRA ajustó un modelo de 65 000 millones de parámetros con una sola GPU de 48GB.\n• Con la GPU de Colab, por ejemplo 16GB, se pueden ajustar modelos de unos miles de millones de parámetros. Esto es lo que haremos hoy.\n• Preparar datos, evaluar y operar siguen requiriendo trabajo adicional.\n\nTexto del diagrama LoRA: Pretrained Weights W ∈ R^(d×d), pesos preentrenados; x; h; A ~ N(0, σ²); B = 0; d; r.",
+      "citation": "Lecture 2 · original japonés, p. 52 · PDF traducido relacionado p.75",
+      "distance": 0.24560412764549255
+    },
+    {
+      "page_id": "lec02-main-p051",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Cuándo y cómo ajustar el modelo elegido",
+      "title": "PEFT: entrenar solo una parte, no todo el modelo",
+      "page": 51,
+      "content": "PEFT: entrenar solo una parte, no todo el modelo\n4/4 — Cuándo y cómo ajustar el modelo elegido.\nEl FT que actualiza todos los parámetros es costoso. Se han generalizado métodos PEFT que entrenan solo una pequeña parte.\nFuentes: artículos originales de Houlsby et al., 2019; Li y Liang, 2021; Lester et al., 2021; Hu et al., 2022. Disponibles en la biblioteca PEFT de Hugging Face.\n\nQué se entrena, figura 1 de Dettmers et al.:\nFull Fine-Tuning: actualiza todos los parámetros; necesita mucha memoria y almacenamiento.\nLoRA: mantiene fijo el modelo base y actualiza solo una pequeña parte añadida.\nQLoRA: además comprime el modelo base a 4bit para ahorrar memoria.\n\nPrincipales métodos PEFT:\nAdaptadores: insertar pequeñas capas entre las existentes y entrenar solo esas capas; Houlsby et al., 2019.\nPrefix tuning / prompt tuning: añadir tokens virtuales entrenables antes de la entrada; Li y Liang, 2021; Lester et al., 2021.\nLoRA: representar el cambio de los pesos mediante el producto de 2 matrices pequeñas y estrechas, de rango bajo, y entrenarlas; Hu et al., 2022. Es el método más extendido actualmente.\nQLoRA: LoRA más compresión de los pesos originales a 4bit para necesitar aún menos memoria; Dettmers et al., 2023. Siguiente diapositiva.\n\nTexto del gráfico comparativo: Full Finetuning (No Adapters), ajuste de todos los parámetros sin adaptadores; LoRA; QLoRA. Optimizer, optimizador; Adapters, adaptadores; 16-bit Transformer; 4-bit Transformer.",
+      "citation": "Lecture 2 · original japonés, p. 51",
+      "distance": 0.2787671983242035
+    },
+    {
+      "page_id": "lec02-main-p060",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Cuándo y cómo ajustar el modelo elegido",
+      "title": "Ejercicio de hoy: corregir el formato con QLoRA y medir el efecto",
+      "page": 60,
+      "content": "Ejercicio de hoy: corregir el formato con QLoRA y medir el efecto\nEjercicio.\nContinuamos la tarea previa: ofrecer una API con Colab + FastAPI + ngrok y observar la variación según la temperatura.\n\nPreparación: resolver los problemas encontrados en la tarea previa.\nMedir antes: medir el cumplimiento del formato varias veces con la misma temperatura.\nEntrenar con QLoRA: ajustar con ejemplos que respeten el formato.\nMedir después: sustituir por el modelo tras el FT y evaluar las mismas preguntas.\nControl, preguntas de conocimiento: deberían mantenerse sin cambios. Si cambian, revisar la evaluación.\n\nTasa de cumplimiento de formato = proporción de respuestas que pueden leerse como JSON y contienen los campos definidos, answer, slide y confidence. Solo se puede decir que se ha corregido tras aplicar la misma evaluación antes y después.",
+      "citation": "Lecture 2 · original japonés, p. 60",
+      "distance": 0.3263651132583618
+    },
+    {
+      "page_id": "lec02-main-p047",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Cuándo y cómo ajustar el modelo elegido",
+      "title": "Evidencia y matices: para añadir conocimiento, RAG suele funcionar mejor",
+      "page": 47,
+      "content": "Evidencia y matices: para añadir conocimiento, RAG suele funcionar mejor\n4/4 — Cuándo y cómo ajustar el modelo elegido.\nEsto no significa que el FT no pueda incorporar ningún conocimiento. Es una regla general cuyas excepciones conviene conocer.\nFuentes: Ovadia et al., EMNLP 2024; Gekhman et al., EMNLP 2024; Biderman et al., TMLR 2024; Zhou et al., LIMA, NeurIPS 2023.\n\nResultados de investigación que sustentan la regla general:\nOvadia et al., 2024: en tareas de conocimiento, RAG superó de forma consistente al FT que entrenaba directamente con los documentos.\nGekhman et al., 2024: los ejemplos con conocimiento nuevo se aprenden más lentamente; al aprenderlos, tienden a aumentar las alucinaciones.\nBiderman et al., 2024: LoRA aprende menos y olvida menos que el FT de todos los parámetros. Adecuado para ajustes pequeños.\n\nExcepciones y matices:\n• El preentrenamiento continuo, CPT, con mucho texto puede incorporar idiomas y conocimiento especializado, como Swallow para japonés.\n• Entrenar con diversas paráfrasis del mismo hecho facilita que el FT incorpore conocimiento.\n• El comportamiento puede cambiar mucho con unos 1,000 ejemplos de buena calidad, como en LIMA.\n• También se usa para hacer más rápida y barata la ejecución transfiriendo el comportamiento de un modelo grande a uno pequeño: destilación.",
+      "citation": "Lecture 2 · original japonés, p. 47 · PDF traducido relacionado p.79",
+      "distance": 0.3526514768600464
+    },
+    {
+      "page_id": "lec02-main-p061",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Cuándo y cómo ajustar el modelo elegido",
+      "title": "Desarrollo del ejercicio y entregables: provisional",
+      "page": 61,
+      "content": "Desarrollo del ejercicio y entregables: provisional\nEjercicio.\nLos tiempos son orientativos. Lo importante es medir antes y después con las mismas preguntas, temperatura y número de repeticiones.\n\n1. Preparación, 10 minutos: corregir problemas de la tarea previa y comprobar que la API funciona.\n2. Medir antes del FT, 10 minutos: tasa de cumplimiento del formato en 30 preguntas de evaluación × 3 repeticiones. Guardar también las respuestas a 10 preguntas normales.\n3. Entrenar con QLoRA, 20 minutos: entrenar con 200 ejemplos; unos diez y tantos minutos en la GPU de Colab.\n4. Medir después del FT, 10 minutos: sustituir el modelo y medir con las mismas preguntas, temperatura y repeticiones del paso 2.\n5. Control, preguntas de conocimiento, 5 minutos: los ejemplos no contienen los hechos, por lo que no debería cambiar. Si cambia, sospechar un error en la evaluación o el entrenamiento.\n\nEntregables:\n• Tabla comparativa antes y después: tasa de cumplimiento del formato y respuestas a preguntas normales.\n• 2 ejemplos de preguntas que no se corrigieron.\n• Reflexión de 3 líneas: qué se corrigió, qué no y por qué.\nLas 30 preguntas de evaluación no deben coincidir con las de entrenamiento. Una diferencia pequeña puede estar dentro del margen de error; informa también de la variabilidad de las 3 repeticiones.",
+      "citation": "Lecture 2 · original japonés, p. 61",
+      "distance": 0.36679157614707947
+    }
+  ]
+}

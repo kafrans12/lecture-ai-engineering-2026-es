@@ -1,0 +1,135 @@
+{
+  "case_id": 1,
+  "slug": "structured_output",
+  "question": "¿En qué se diferencian Structured Output y Constrained Decoding, y cómo garantizan un formato JSON válido?",
+  "variant": "neighbors",
+  "expand_neighbors": true,
+  "created_at_utc": "2026-11-21T18:38:37.574377+00:00",
+  "reference_status": "candidate_unverified_relevance",
+  "candidate_page_ids": [
+    "lec03-main-p034",
+    "lec03-main-p035"
+  ],
+  "candidate_pages_found": [
+    "lec03-main-p034",
+    "lec03-main-p035"
+  ],
+  "candidate_coverage": 1.0,
+  "total_pages": 9,
+  "unique_pages": 9,
+  "context_characters": 7648,
+  "page_ids": [
+    "lec03-main-p035",
+    "lec03-main-p034",
+    "lec03-main-p036",
+    "lec03-main-p062",
+    "lec03-main-p061",
+    "lec03-main-p063",
+    "lec03-main-p033",
+    "lec03-main-p037",
+    "lec03-main-p032"
+  ],
+  "results": [
+    {
+      "page_id": "lec03-main-p035",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 5: Salida estructurada y llamadas a herramientas",
+      "title": "Decodificación restringida: nada fuera del formato",
+      "page": 35,
+      "content": "Decodificación restringida: nada fuera del formato\nEn cada token, se descartan los candidatos que no cumplen el esquema\nFuente: Anthropic, “Structured outputs” (Claude Platform Docs, consultado 2026/10/21); OpenAI, “Introducing Structured Outputs in the API” (2024/8/6); Google, “Structured output” (Gemini API Docs). Candidatos y probabilidades ficticios.\nSalida hasta ahora\n{\"confianza\": \"\nEsquema: alta, media, baja\nCandidatos al siguiente token\nalta\n0.40\nmuy\n0.30\n× Excluido\nmedia\n0.20\nbaja\n0.10\nSe elige entre los que quedan\nLas salidas que no encajan\nni siquiera se generan\nCómo se especifica en las API principales (documentación de oct. 2026)\nClaude\noutput_config.format\nHerramientas: strict: true\nOpenAI\njson_schema\n+ strict: true\nDistinto del JSON mode\nGemini\nEspecificar un JSON Schema\n(admite solo una parte)\nLos errores de formato casi desaparecen. En la evaluación de OpenAI, el 100 % cumplió el esquema (agosto de 2024; modelos anteriores, menos del 40 %).\nAun así quedan excepciones: rechazos, cortes por límite de longitud y, en Claude, mayúsculas/minúsculas en las opciones (enum).",
+      "citation": "Lecture 3 · PDF traducido, p. 34",
+      "distance": 0.2582137882709503
+    },
+    {
+      "page_id": "lec03-main-p034",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 5: Salida estructurada y llamadas a herramientas",
+      "title": "Salida estructurada",
+      "page": 34,
+      "content": "Salida estructurada\nPrimero se define un esquema (campos y tipos) y se pide la respuesta en JSON (un formato de datos) u otro\nFuente: esquema y salida ficticios. En la práctica se definen con JSON Schema u otros.\nRespuesta en texto libre\nCreo que la causa probablemente\nsea el manejo de los valores límite.\nConvendría revisar\nutils.py.\nRespuesta según el esquema\nTipo definido\nCausa\nManejo de valores límite\nCadena\nArchivo afectado\nutils.py\nCadena\nConfianza\nmedia\nUno de: alta, media, baja\n¿Requiere corrección?\nsí\nBooleano\nUsos\nExtraer campos de documentos\nClasificar o decidir entre opciones\nLlamar a herramientas\nLas llamadas a herramientas también son salida estructurada: nombre y argumentos con un formato fijo.",
+      "citation": "Lecture 3 · original japonés, p. 34 · PDF traducido relacionado p.33"
+    },
+    {
+      "page_id": "lec03-main-p036",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 5: Salida estructurada y llamadas a herramientas",
+      "title": "Modelo de decisión: devuelve las probabilidades de las respuestas candidatas en una sola pasada, sin escribir texto",
+      "page": 36,
+      "content": "Modelo de decisión: devuelve las probabilidades de las respuestas candidatas en una sola pasada, sin escribir texto\nFuente: TypeSafe AI Docs, “System One” y “Primitives”; J. Ojeda, “Jev: The Model That Doesn't Write JSON” (2026/9/22). Consultado 2026/10. Velocidad y costo según el fabricante; probabilidades de ejemplo.\nDecodificación restringida (diapositiva anterior)\n{\"Confianza\": \"alta\"}\nUn cálculo por cada token elegido\nJev\nConsulta\n+ respuestas candidatas\nPagos\n0.82\nTécnico\n0.13\nOtros\n0.05\nDevuelve la probabilidad de cada candidato en un solo cálculo\nNo da respuestas fuera de los candidatos.\nPero puede elegir mal entre ellos.\nEs rápido, pero no puede generar texto\nRápido y barato\nRespuesta en 70–500 ms.\nCuesta ~1/76 de un LLM mediano.\nNo escribe texto\nNo da resúmenes, código ni explicaciones.\nSolo devuelve la respuesta elegida y su probabilidad.\nIdeal para decisiones con candidatos fijos\nEnrutar consultas, etiquetar,\nguardrails, etc.",
+      "citation": "Lecture 3 · original japonés, p. 36 · PDF traducido relacionado p.35"
+    },
+    {
+      "page_id": "lec03-main-p062",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Anexo",
+      "title": "Anexo: novedades en salida estructurada",
+      "page": 62,
+      "content": "Anexo: novedades en salida estructurada\nLas API de los 3 grandes ya generan solo salidas que cumplen un esquema; sintaxis y excepciones varían.\nQué ha cambiado\nElemento\nCambios\nFecha\nClaude API\nLa salida estructurada sale de beta. Dos vías: formato de respuesta (output_config.format) y strict: true en la definición de herramientas\n2026/1/29\nOpenAI API\nSe indica con el formato json_schema y strict: true. JSON mode se distingue por no garantizar el cumplimiento del esquema\nDocumentación a 2026/10\nGemini API\nSoporta parte de JSON Schema. Puede rechazar esquemas grandes o muy anidados\nActualizado el 2026/9/23\nRelación con la clase: es el “forzar el formato” de la clase. Los errores caen, pero rechazos y cortes por tokens rompen el esquema: sigue validando.\nPrecauciones: hay restricciones no soportadas (p. ej., rangos numéricos en Claude). Algunos modelos de Claude de sept. de 2026 no admiten tool_choice con any / tool.\nFuente: Anthropic “Structured outputs”, “Claude Platform release notes” (2026/1/29, 9/1, 9/22), OpenAI “Structured Outputs”, Google “Structured output” (actualizado el 2026/9/23). Información verificada el 2026/10/9",
+      "citation": "Lecture 3 · PDF traducido, p. 60",
+      "distance": 0.3138529658317566
+    },
+    {
+      "page_id": "lec03-main-p061",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Anexo",
+      "title": "Anexo: novedades en SDK y frameworks de agentes",
+      "page": 61,
+      "content": "Anexo: novedades en SDK y frameworks de agentes\nLos SDK principales ya incluyen de serie, además del loop, sandbox, flujos de trabajo y guardado de estado.\nQué ha cambiado\nElemento\nCambios\nFecha\nOpenAI Agents SDK\nAmplía el harness y soporta de serie la ejecución en sandbox. Integra AGENTS.md, skills, MCP, shell y aplicación de parches. Para Python\nAnunciado el 2026/4/15\nGoogle ADK 2.0\nAñade flujos de trabajo en grafo y pausa/reanudación a la espera de input humano. Disponible para Python, Go y TypeScript\n2026/5/19〜8/21\nClaude Agent SDK\nOfrece como librería las herramientas, el loop y la gestión de permisos de Claude Code (Python y TypeScript). Versión alojada: Managed Agents\nDocumentación a 2026/10\nRelación con la clase: de los “4 elementos del harness”, el SDK cubre ahora más piezas. Qué delegar y dónde parar sigue decidiéndolo el usuario.\nPrecauciones: cambian rápido y rompen compatibilidad (ADK 2.0 tiene guía desde 1.x). En la práctica usamos pydantic-ai (como el agente de Quri) con versión fija.\nFuente: OpenAI “The next evolution of the Agents SDK” (2026/4/15), Google “Welcome to ADK 2.0”, Anthropic “Agent SDK overview” (estos dos sin fecha). Información verificada el 2026/10/9",
+      "citation": "Lecture 3 · PDF traducido, p. 59"
+    },
+    {
+      "page_id": "lec03-main-p063",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Anexo",
+      "title": "Anexo: novedades en llamadas a herramientas",
+      "page": 63,
+      "content": "Anexo: novedades en llamadas a herramientas\nEn Claude API ya se pueden usar sin indicar beta la carga de definiciones de herramientas solo cuando hacen falta y la llamada de herramientas en bloque desde código.\nQué ha cambiado\nElemento\nCambios\nFecha\nBúsqueda de herramientas\nAplaza la carga de definiciones; el modelo busca y añade a la entrada solo lo necesario. En el ejemplo de la documentación, unos 55 000 tokens de definiciones se reducen más de un 85%\n2026/2/17\nLlamada vía código\nEl código del modelo llama a herramientas en cadena y solo la salida final vuelve a la entrada. En una evaluación de búsqueda, −24% de tokens de entrada\n2026/2/17\nOpenAI API\nSoporta carga diferida (defer_loading) y tool_search. Para modelos gpt-5.4 y posteriores\nDocumentación a 2026/10\nRelación con la clase: con muchas herramientas, su lista ya llena el contexto; por eso se cargan bajo demanda. Con más de 30–50, la selección pierde precisión.\nPrecauciones: no ayuda si se llaman una a una (en una evaluación, ~8% más de coste). Indicar quién llama no es un límite de seguridad: comprueba los permisos en el harness.\nFuente: Anthropic “Tool search tool”, “Programmatic tool calling”, “Claude Platform release notes” (2026/2/17), OpenAI “Function calling” (sin fecha). Información verificada el 2026/10/9",
+      "citation": "Lecture 3 · PDF traducido, p. 61"
+    },
+    {
+      "page_id": "lec03-main-p033",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 5: Salida estructurada y llamadas a herramientas",
+      "title": "Parte 5: Salida estructurada y llamadas a herramientas",
+      "page": 33,
+      "content": "Parte 5\nSalida estructurada y tool calls\nDefinir el formato · generar solo salidas que lo cumplan",
+      "citation": "Lecture 3 · PDF traducido, p. 32"
+    },
+    {
+      "page_id": "lec03-main-p037",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 6: Memoria",
+      "title": "Parte 6: Memoria",
+      "page": 37,
+      "content": "Parte 6\nMemoria\nImplementaciones · Skill",
+      "citation": "Lecture 3 · PDF traducido, p. 36"
+    },
+    {
+      "page_id": "lec03-main-p032",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 4: Herramientas",
+      "title": "Búsqueda de herramientas: cargar también sus descripciones solo cuando hacen falta",
+      "page": 32,
+      "content": "Búsqueda de herramientas: cargar también sus descripciones solo cuando hacen falta\nCuando hay muchas herramientas, sus descripciones por sí solas pueden llenar el contexto.\nFuente: Anthropic, «Tool search tool» (2026/2/17); OpenAI, «Function calling» (consultado 2026/10/9). El número de tokens procede del ejemplo de la documentación. El intercambio es ficticio y tiene fines ilustrativos.\n\nIncluir todas las definiciones desde el principio\nContexto (se acumula de arriba abajo)\nPrompt de sistema\nDefiniciones de herramientas ×50 (incluidas las de MCP)\nread_file, run_tests, slack_search, calendar_add, …\nUnos 55 000 tokens\nTarea: resume los mensajes no leídos de Slack\nLas definiciones de herramientas ocupan el contexto antes de leer la tarea.\n\nBuscar con la búsqueda de herramientas\nContexto (se acumula de arriba abajo)\nPrompt de sistema\ntool_search: herramienta para buscar herramientas (solo esta se incluye siempre)\nTarea: resume los mensajes no leídos de Slack\ntool_search(\"slack\")\nSolo se añade la definición encontrada: slack_search\nCuando hay muchas herramientas, se puede elegir la equivocada.",
+      "citation": "Lecture 3 · original japonés, p. 32"
+    }
+  ]
+}

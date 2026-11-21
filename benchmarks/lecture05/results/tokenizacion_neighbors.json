@@ -1,0 +1,148 @@
+{
+  "case_id": 5,
+  "slug": "tokenizacion",
+  "question": "¿Qué es la tokenización y cómo se relaciona con la generación de tokens de un LLM?",
+  "variant": "neighbors",
+  "expand_neighbors": true,
+  "created_at_utc": "2026-11-21T18:42:52.962964+00:00",
+  "reference_status": "candidate_unverified_relevance",
+  "candidate_page_ids": [
+    "lec02-main-p009",
+    "lec02-main-p010"
+  ],
+  "candidate_pages_found": [
+    "lec02-main-p009",
+    "lec02-main-p010"
+  ],
+  "candidate_coverage": 1.0,
+  "total_pages": 10,
+  "unique_pages": 10,
+  "context_characters": 9484,
+  "page_ids": [
+    "lec02-main-p009",
+    "lec02-main-p008",
+    "lec02-main-p010",
+    "lec02-main-p007",
+    "lec02-main-p011",
+    "lec02-main-p006",
+    "lec02-main-p005",
+    "lec02-main-p015",
+    "lec02-main-p014",
+    "lec02-main-p016"
+  ],
+  "results": [
+    {
+      "page_id": "lec02-main-p009",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "title": "Tokenización: dividir el texto en las unidades que maneja el modelo",
+      "page": 9,
+      "content": "Tokenización: dividir el texto en las unidades que maneja el modelo\n1/4 — Los LLM eligen las siguientes palabras mediante probabilidades.\nLos tokens pueden ser palabras, partes de palabras o signos. La longitud de entrada y salida y el coste se cuentan en tokens.\n\nEjemplo: dividir la pregunta de un estudiante en tokens. La segmentación depende del modelo; este esquema es ilustrativo.\nPregunta original en japonés: «RAGって何ですか？」, que significa «¿Qué es RAG?».\nToken original | ID ilustrativo\nRAG | 1000\nって | 1037\n何 | 1074\nです | 1111\nか | 1148\n？ | 1185\nCada token se convierte en un número, su ID, y el modelo recibe una secuencia de números.\n\nEl límite de longitud se cuenta en tokens: la cantidad que puede leer de una vez, o longitud del contexto, también se determina en tokens.\nEl coste también se cuenta en tokens: la tarifa de la API depende de los tokens de entrada y salida; véase el complemento con la estimación de costes.\nLa eficiencia varía por idioma: el mismo contenido puede necesitar distinto número de tokens según el idioma.",
+      "citation": "Lecture 2 · original japonés, p. 9",
+      "distance": 0.27254360914230347
+    },
+    {
+      "page_id": "lec02-main-p008",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "title": "Un LLM elige el siguiente token mediante probabilidades, una y otra vez",
+      "page": 8,
+      "content": "Un LLM elige el siguiente token mediante probabilidades, una y otra vez\n1/4 — Los LLM eligen las siguientes palabras mediante probabilidades.\nIdea central de estos 15 minutos: un LLM calcula las probabilidades del siguiente token y elige uno. Por eso las respuestas varían y aparecen errores plausibles.\n\nToken: unidad en que se divide un texto. Tanto la longitud como el coste se cuentan en tokens.\nComo se elige a partir de probabilidades, mediante muestreo, la respuesta puede cambiar aunque la pregunta sea la misma.\nEl preentrenamiento aprende lo plausible. El post-entrenamiento lo orienta hacia lo correcto, pero no lo garantiza. Por eso hay que medir sus resultados y trabajar teniendo en cuenta sus límites.",
+      "citation": "Lecture 2 · original japonés, p. 8"
+    },
+    {
+      "page_id": "lec02-main-p010",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "title": "Calcular la probabilidad del siguiente token, elegir uno y repetir",
+      "page": 10,
+      "content": "Calcular la probabilidad del siguiente token, elegir uno y repetir\n1/4 — Los LLM eligen las siguientes palabras mediante probabilidades.\nEl Transformer, la estructura habitual de los LLM actuales, examina todo el contexto y produce una distribución de probabilidad del siguiente token.\nFuente: las probabilidades son ejemplos ilustrativos.\n\nEntrada, el texto hasta este punto, traducido del ejemplo japonés:\nPregunta: ¿Qué es RAG?\nRespuesta: RAG es un método que… los documentos relacionados con la pregunta.\n→ Transformer.\nProbabilidades de los tokens originales japoneses, con su significado en español:\n検索, buscar o recuperar: 46%.\n探し, buscar: 31%.\n集め, reunir: 12%.\n読み, leer: 7%.\n\n1. Elegir un token según esas probabilidades; por ejemplo, 検索.\n2. Añadir el token elegido al final de la entrada.\n3. Volver a calcular las probabilidades del siguiente token.\n4. Repetir hasta que aparezca el token de fin.\n\nLo aprendido durante el entrenamiento son probabilidades de qué es probable que venga después en un contexto dado. El modelo por sí mismo no incluye un mecanismo que compruebe directamente si un hecho es correcto.",
+      "citation": "Lecture 2 · original japonés, p. 10 · PDF traducido relacionado p.14"
+    },
+    {
+      "page_id": "lec02-main-p007",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "title": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "page": 7,
+      "content": "Los LLM eligen las siguientes palabras mediante probabilidades\nClase 2, bloque 1/4: unos 15 minutos.\n¿Por qué varían las respuestas del chatbot y por qué se equivoca con tanta seguridad?",
+      "citation": "Lecture 2 · original japonés, p. 7"
+    },
+    {
+      "page_id": "lec02-main-p011",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "title": "Qué es el modelo: una función enorme con miles de millones de parámetros",
+      "page": 11,
+      "content": "Qué es el modelo: una función enorme con miles de millones de parámetros\n1/4 — Los LLM eligen las siguientes palabras mediante probabilidades.\nLa idea es la misma que la de los coeficientes de una regresión múltiple. Entrenar consiste en ajustar esos números para acertar en la predicción.\n\nEjemplo conocido: regresión múltiple.\nPredicción = w₁ × superficie + w₂ × distancia a la estación + b.\nPredicción del alquiler: hay 3 coeficientes, w₁, w₂ y b.\n\nProbabilidad del siguiente token = f(tokens anteriores; w).\nEn un LLM hay de miles de millones a billones de coeficientes w.\nSu interior combina sumas y transformaciones en muchas capas: una red neuronal. Cada conexión tiene un coeficiente.\nParámetros o pesos: son esos coeficientes.\n«7B» = 7 000 millones de parámetros. A 16bit, solo los pesos de un modelo 7B ocupan unos 14GB. Un FT convencional necesita además los estados de entrenamiento y varias veces más memoria.\nEntrenamiento = ajustar los coeficientes poco a poco para que la predicción se acerque a la respuesta correcta.\nPreentrenamiento, post-entrenamiento y Fine-Tuning ajustan todos estos coeficientes. Se diferencian en los datos utilizados, qué coeficientes se cambian y cuánto.\n\nTexto del diagrama de red neuronal: input layer → hidden layer 1 → hidden layer 2 → output layer; capa de entrada → capa oculta 1 → capa oculta 2 → capa de salida.",
+      "citation": "Lecture 2 · original japonés, p. 11"
+    },
+    {
+      "page_id": "lec02-main-p006",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Introducción",
+      "title": "Términos de hoy: solo 6 para empezar",
+      "page": 6,
+      "content": "Términos de hoy: solo 6 para empezar\nEstructura de hoy.\nLos veremos con detalle en cada bloque. Aquí basta entenderlos en una frase. Si tienes dudas, vuelve a esta diapositiva.\n\nToken: unidad en que se divide un texto; se utiliza para contar la longitud y el coste. Bloque 1.\nParámetros o pesos: números del interior del modelo, de miles de millones a billones, que se ajustan durante el entrenamiento. Bloque 1.\nPreentrenamiento: aprender a predecir el siguiente token con grandes cantidades de texto. Es la base del conocimiento. Bloque 2.\nPost-entrenamiento: aprender cómo responder mediante ejemplos y evaluaciones. Bloque 2.\nCómputo en inferencia: aumentar la cantidad de razonamiento al responder. Bloque 2.\nFine-Tuning (FT), ajuste fino: realizar nosotros mismos post-entrenamiento a pequeña escala. Bloque 4.\n\nRepaso de la Clase 1: RAG = buscar materiales relacionados con la pregunta, incluirlos en la entrada y después hacer que responda. Más detalle en la Clase 5.",
+      "citation": "Lecture 2 · original japonés, p. 6",
+      "distance": 0.3413298726081848
+    },
+    {
+      "page_id": "lec02-main-p005",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Introducción",
+      "title": "Hoy tratamos el modelo en sí",
+      "page": 5,
+      "content": "Hoy tratamos el modelo en sí\nEstructura de hoy.\nLas aplicaciones de ChatGPT y Claude son sistemas que añaden herramientas alrededor del modelo: búsqueda, ejecución de código, memoria, etc. Esa parte externa se tratará en la Clase 3.\n\nServicio, como las aplicaciones de ChatGPT o Claude = sistema:\n• Búsqueda.\n• Ejecución de código.\n• Memoria y archivos.\n• Instrucciones largas.\n• Modelo (LLM): esta es la parte que tratamos hoy.\nLa parte externa, el agente que actúa usando herramientas, corresponde a la Clase 3.\n\nAunque exista esa parte externa, se mantienen las propiedades de hoy:\n• Buscar para responder con información reciente automatiza la entrega de materiales, RAG. No añade conocimiento al modelo.\n• Aun recibiendo resultados de búsqueda, la respuesta varía. También puede interpretar mal la información o confundir las fuentes.\n• Incluir demasiados resultados hace que pase por alto lo que está en medio y aumenta el coste.\nLa tarea previa y el ejercicio usan el modelo sin esa parte externa: el «modelo en bruto». Podrás notar la diferencia.",
+      "citation": "Lecture 2 · original japonés, p. 5 · PDF traducido relacionado p.8"
+    },
+    {
+      "page_id": "lec02-main-p015",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "title": "Otro límite: no usa por igual todo un contexto largo",
+      "page": 15,
+      "content": "Otro límite: no usa por igual todo un contexto largo\n1/4 — Los LLM eligen las siguientes palabras mediante probabilidades.\nAunque aumente lo que puede leer de una vez, tiende a pasar por alto la información intermedia. Los modelos recientes muestran mejoras, pero hay que evaluar el uso propio.\nFuentes: N. F. Liu et al., «Lost in the Middle», TACL 2024. Sobre las mejoras y los retos pendientes: C.-P. Hsieh et al., «RULER», COLM 2024, entre otros.\n\nPiénsalo: ¿qué ocurre con la precisión si la respuesta está en medio? Figura 1 de Liu et al.\nLa información situada en medio se aprovecha menos, formando una curva en U. La línea discontinua representa el caso sin documentos.\nEn un chatbot:\n• En lugar de proporcionar todos los materiales del curso, buscar y dar solo las partes relacionadas con la pregunta: RAG.\n• Organizar la información de conversaciones y documentos largos mediante resúmenes y notas de trabajo.\n• Variar la longitud de entrada y medir si cae la tasa de acierto.\n\nTexto del gráfico: 20 Total Retrieved Documents (~4K tokens), 20 documentos recuperados en total, unos 4K tokens. Eje horizontal: Position of Document with the Answer, posición del documento que contiene la respuesta. Eje vertical: Accuracy, precisión. Leyenda: gpt-3.5-turbo-0613 / gpt-3.5-turbo-0613 (closed-book, sin documentos).",
+      "citation": "Lecture 2 · original japonés, p. 15",
+      "distance": 0.3472785949707031
+    },
+    {
+      "page_id": "lec02-main-p014",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "title": "Consecuencia ②: responde de forma plausible aunque no sepa",
+      "page": 14,
+      "content": "Consecuencia ②: responde de forma plausible aunque no sepa\n1/4 — Los LLM eligen las siguientes palabras mediante probabilidades.\nComo genera textos probables de forma probabilística, puede producir errores fluidos, o alucinaciones, ante preguntas sobre información que desconoce.\n\nEjemplo ilustrativo:\nEstudiante: ¿Cuándo vence la entrega de la tarea de la Clase 14?\nChatbot: La tarea de la Clase 14 consiste en las diapositivas de la presentación final, y el plazo es el domingo 20 de diciembre a las 23:59.\nEn realidad no existe la Clase 14: hay 13 clases. Aun así, se genera una respuesta plausible para un programa de curso.\n\nPor qué ocurre y cómo afrontarlo:\nMecanismo: es fácil que una respuesta plausible tenga mayor probabilidad que «No lo sé».\nMedida, aportar fundamento: buscar y proporcionar materiales del curso, RAG en la Clase 5. Pedir que muestre también las fuentes.\nMedida, medir: incluir preguntas que no pueda responder en el conjunto de evaluación y comprobar si puede decir «No lo sé».",
+      "citation": "Lecture 2 · original japonés, p. 14"
+    },
+    {
+      "page_id": "lec02-main-p016",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "title": "Quiz 1: ¿se puede publicar?",
+      "page": 16,
+      "content": "Quiz 1: ¿se puede publicar?\nQuiz 1/4.\n① Vota primero por tu cuenta → ② escribe brevemente el motivo en el chat → ③ lee los motivos de los demás y vuelve a votar.\n\nAntes de publicar el chatbot del curso, lo has probado con 20 preguntas, una vez cada una. Acertó todas. ¿Qué deberías hacer después?\nA. Publicarlo tal cual.\nB. Repetir varias veces las mismas preguntas, añadir preguntas que no pueda responder y volver a medir.\nC. Poner la temperatura al máximo para enriquecer las respuestas y después publicarlo.\nD. Cambiar al modelo más grande y después publicarlo.\n\nSi estudias solo con los materiales, decide tu respuesta antes de ir a la siguiente diapositiva. Prueba a explicar el motivo en una frase.",
+      "citation": "Lecture 2 · original japonés, p. 16"
+    }
+  ]
+}

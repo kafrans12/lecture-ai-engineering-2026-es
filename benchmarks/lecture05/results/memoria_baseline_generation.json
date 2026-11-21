@@ -1,0 +1,25 @@
+{
+  "case": "memoria",
+  "variant": "baseline",
+  "model": "gemini-3.5-flash-lite",
+  "question": "¿Por qué necesitan memoria los agentes y cómo pueden conservar información entre sesiones?",
+  "retrieval_source": "benchmarks\\lecture05\\results\\memoria_baseline.json",
+  "page_ids": [
+    "lec03-main-p013",
+    "lec03-main-p038",
+    "lec03-main-p039",
+    "lec03-main-p040",
+    "lec03-main-p065"
+  ],
+  "context_characters": 4334,
+  "created_at_utc": "2026-11-21T19:11:35.500435+00:00",
+  "answer": "Basándose en el material de estudio proporcionado, los agentes necesitan memoria porque el contexto es finito y, sin ella, se empieza de cero cada vez, lo que provoca que se deba volver a explicar lo ya decidido, se repitan los mismos errores y las tareas largas se corten al llegar al límite del contexto [lec03-main-p013, lec03-main-p038]. \n\nPara conservar información entre sesiones, los agentes utilizan mecanismos de almacenamiento externo mediante distintas implementaciones:\n\n* **Herramientas de memoria (como en Claude API):** El modelo solicita archivos (por ejemplo, de un directorio de memorias) y la aplicación los gestiona en su propio almacenamiento, de modo que la memoria escrita entra en el contexto siguiente [lec03-main-p039, lec03-main-p065].\n* **Memoria automática (como en Claude Code):** El agente escribe sus propias notas y lee cada vez las primeras 200 líneas o 25 KB [lec03-main-p039].\n* **Procesos nocturnos o revisiones (como en OpenClaw):** Se guardan notas diarias (`memory/fecha.md`) y, cada noche de forma automática, se realiza una revisión (*dreaming*) donde se reúnen datos eliminando duplicados, se comparan temas recurrentes y se pasa a una memoria a largo plazo (`MEMORY.md`) únicamente lo que supera un determinado umbral, evitando así que la memoria se infle [lec03-main-p040].",
+  "usage": {
+    "prompt_token_count": 1328,
+    "candidates_token_count": 336,
+    "total_token_count": 1664,
+    "thoughts_token_count": null,
+    "cached_content_token_count": null
+  },
+  "method": "single_generate_content_with_frozen_retrieval_context"
+}

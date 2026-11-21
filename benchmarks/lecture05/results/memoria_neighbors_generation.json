@@ -1,0 +1,31 @@
+{
+  "case": "memoria",
+  "variant": "neighbors",
+  "model": "gemini-3.5-flash-lite",
+  "question": "¿Por qué necesitan memoria los agentes y cómo pueden conservar información entre sesiones?",
+  "retrieval_source": "benchmarks\\lecture05\\results\\memoria_neighbors.json",
+  "page_ids": [
+    "lec03-main-p013",
+    "lec03-main-p012",
+    "lec03-main-p014",
+    "lec03-main-p038",
+    "lec03-main-p037",
+    "lec03-main-p039",
+    "lec03-main-p040",
+    "lec03-main-p041",
+    "lec03-main-p065",
+    "lec03-main-p064",
+    "lec03-main-p066"
+  ],
+  "context_characters": 8717,
+  "created_at_utc": "2026-11-21T19:11:37.815463+00:00",
+  "answer": "Basándose en el material de estudio proporcionado, la respuesta a la pregunta es la siguiente:\n\n### **¿Por qué necesitan memoria los agentes?**\nLos agentes necesitan memoria porque el contexto es finito y, **sin memoria, cada vez se empieza de cero** [lec03-main-p013, lec03-main-p038]. Si no se cuenta con memoria, se producen los siguientes problemas:\n1. **Empezar de cero cada vez:** Obliga a volver a explicar lo ya decidido [lec03-main-p038].\n2. **Repetir los mismos errores:** Obliga a volver a buscar una causa que ya se había encontrado anteriormente [lec03-main-p038].\n3. **Las tareas largas se cortan:** Al llegar al límite del contexto, se pierde el progreso [lec03-main-p038].\n\n### **¿Cómo pueden conservar información entre sesiones?**\nPara conservar información entre sesiones (almacenamiento externo), existen diferentes mecanismos e implementaciones detallados en el material:\n\n* **Herramienta de memoria (Claude API / Aplicaciones):** El modelo solicita archivos o operaciones de almacenamiento (como pedir archivos de `/memories`), y la aplicación gestiona dicha información en su propio almacenamiento [lec03-main-p039, lec03-main-p065]. La herramienta de memoria actúa como un registro entre sesiones [lec03-main-p065], de modo que el agente vuelve a leer la información escrita si hace falta y esta entra en el contexto siguiente [lec03-main-p039].\n* **Memoria automática (Claude Code):** El agente escribe sus propias notas y lee cada vez las primeras 200 líneas o 25 KB [lec03-main-p039].\n* **Revisión nocturna y memoria a largo plazo (OpenClaw):** Consiste en guardar notas diarias (por ejemplo, en `memory/fecha.md`) y realizar un proceso automático cada noche (*dreaming*) donde se reúne información quitando duplicados, se comparan temas recurrentes y se mueve a la memoria a largo plazo (`MEMORY.md`) únicamente lo que supera un determinado umbral para no inflar la memoria [lec03-main-p040]. Esta memoria a largo plazo se carga al inicio de la siguiente conversación [lec03-main-p040].",
+  "usage": {
+    "prompt_token_count": 2662,
+    "candidates_token_count": 526,
+    "total_token_count": 3188,
+    "thoughts_token_count": null,
+    "cached_content_token_count": null
+  },
+  "method": "single_generate_content_with_frozen_retrieval_context"
+}

@@ -1,0 +1,161 @@
+{
+  "case_id": 3,
+  "slug": "idempotencia",
+  "question": "¿Por qué es importante la idempotencia cuando un agente ejecuta herramientas o reintenta operaciones?",
+  "variant": "neighbors",
+  "expand_neighbors": true,
+  "created_at_utc": "2026-11-21T18:41:09.164223+00:00",
+  "reference_status": "candidate_unverified_relevance",
+  "candidate_page_ids": [
+    "lec03-main-p027",
+    "lec03-main-p048"
+  ],
+  "candidate_pages_found": [
+    "lec03-main-p027",
+    "lec03-main-p048"
+  ],
+  "candidate_coverage": 1.0,
+  "total_pages": 11,
+  "unique_pages": 11,
+  "context_characters": 8759,
+  "page_ids": [
+    "lec03-main-p027",
+    "lec03-main-p026",
+    "lec03-main-p028",
+    "lec03-main-p048",
+    "lec03-main-p047",
+    "lec03-main-p049",
+    "lec03-main-p030",
+    "lec03-main-p029",
+    "lec03-main-p031",
+    "lec03-main-p025",
+    "lec03-main-p024"
+  ],
+  "results": [
+    {
+      "page_id": "lec03-main-p027",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 4: Herramientas",
+      "title": "Herramientas no idempotentes",
+      "page": 27,
+      "content": "Herramientas no idempotentes\nEl envío sí funcionó. La conexión se cortó antes de la respuesta; el agente lo dio por fallido y lo repitió\nFuente: elaborado a partir de Stripe API Reference, “Idempotent requests” (consultado 2026/10/24; explica que reenviar tras un error de conexión puede ejecutar la misma operación dos veces). El caso del correo es ficticio.\nAgente\nServicio de correo\nBandeja del destinatario\n① send_email (presupuesto)\nLlega el 1.er correo\n×\nNo llega la respuesta de éxito (timeout)\n② Lo da por fallido\n③ send_email otra vez\nLlega el 2.º correo\nOtros casos similares\nHacer un pedido\n→ Se pide dos veces\nEnviar dinero\n→ Se paga dos veces\nPublicar\n→ Dos publicaciones iguales\nEl agente no puede distinguir éxito de fallo. Aunque se corte la conexión, al otro lado puede haberse ejecutado.",
+      "citation": "Lecture 3 · PDF traducido, p. 27",
+      "distance": 0.2825378179550171
+    },
+    {
+      "page_id": "lec03-main-p026",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 4: Herramientas",
+      "title": "Human in the loop",
+      "page": 26,
+      "content": "Human in the loop\nSegún se elija human-in, on u out-of-the-loop, cambia cómo se diseñan la aprobación y la parada.\nHay un compromiso entre comodidad y seguridad.\nFuente: la clasificación proviene del debate sobre armas autónomas de Human Rights Watch, “Losing Humanity” (2012/11/19). Anthropic, “Measuring AI agent autonomy in practice” (2026/2/18); Anthropic, “How we contain Claude across products” (2026/5/25).\nin: aprobar cada vez\nAgente\nOperación\nAprueba todo\nUna persona autoriza cada operación.\nLa aprobación tiende a volverse un trámite.\non: supervisar y poder parar\nAgente\nOperación\nObservar y parar\nSe deja actuar; la persona supervisa e interviene si hace falta.\nRequiere que el medio para pararlo esté fuera del agente.\nout: delegación total\nAgente\nOperación\nSolo ver el resultado\nLa persona solo ve el resultado. Corre sola o programada.\nLa parada y los informes deben estar integrados en el sistema.",
+      "citation": "Lecture 3 · original japonés, p. 26 · PDF traducido relacionado p.26"
+    },
+    {
+      "page_id": "lec03-main-p028",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 4: Herramientas",
+      "title": "Fuga de información",
+      "page": 28,
+      "content": "Fuga de información\nDatos sensibles, entrada no confiable y un medio de envío al exterior: si coinciden los tres, puede haber una fuga\nFuente: Simon Willison, “The lethal trifecta for AI agents: private data, untrusted content, and external communication” (2025/6/16, https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/); el artículo de EchoLeak de la página anterior. Los ejemplos de cómo romperla son del docente.\nDatos sensibles\nDocumentos internos, correos, datos de clientes\nEntrada no fiable\nCorreos externos, sitios web\nMedio de envío al exterior\nFuga",
+      "citation": "Lecture 3 · original japonés, p. 28 · PDF traducido relacionado p.28"
+    },
+    {
+      "page_id": "lec03-main-p048",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 7: Condiciones de parada y comportamiento ante fallos",
+      "title": "Garantizar la idempotencia",
+      "page": 48,
+      "content": "Garantizar la idempotencia\nLa conversación y el estado se pueden revertir; las operaciones enviadas fuera, no\nFuente: Zheng et al. ACRFence (arXiv:2603.20625, marzo de 2026, CoDAIM workshop 2026). El ejemplo de la transferencia es del mismo artículo. La prueba de concepto usó la función de checkpoints de Claude Code CLI (Qwen3-32B) y un servicio de transferencias simulado.\nAgente\nBanco\n① Transferir\n② Caída a mitad\n③ Reanudar desde\nel punto guardado\n④ Reenviar\n(nuevo ID de ref.)\nSolo la conversación y el estado vuelven hasta aquí\n1.ª: ejecutada\n2.ª: ejecutada\nLa transferencia no se revierte → pago doble\nSolución\nRegistrar las\noperaciones externas\nTras reanudar,\nllega la misma operación\nNo repetir:\ndevolver lo registrado\nEn el experimento, las 10 ejecuciones con reanudación se duplicaron. Sin reanudación, 0.",
+      "citation": "Lecture 3 · PDF traducido, p. 47",
+      "distance": 0.3059391975402832
+    },
+    {
+      "page_id": "lec03-main-p047",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 7: Condiciones de parada y comportamiento ante fallos",
+      "title": "El prompt reduce las trampas",
+      "page": 47,
+      "content": "El prompt reduce las trampas\nPero no a cero. Haz que los tests usados para juzgar no se puedan modificar\nFuente: Anthropic “Claude Opus 4.7 System Card”, fig. 6.2.2.2.A (2026/4); instrucción tomada de “Claude Opus 4.6 System Card”, sección 6.2.3.2, de la misma empresa. Zhong, Raghunathan & Carlini. ImpossibleBench (arXiv:2510.20270, ICLR 2026). Verificado el 2026/10/24.\nInstrucción: no hacer trampas y avisar si es imposible\n% de trampas en tareas de código imposibles\n45%\nSin instrucción\n12.5%\nCon instrucción\nClaude Opus 4.7 (Anthropic, abril de 2026)\nTests en solo lectura\nEditables\nSolo lectura\nOcultos\nTrampas\nFrecuentes\nreescritura\nbloqueada\nCasi cero\nRendimiento real\nSe mantiene\nSe mantiene\nBaja\nImpossibleBench (octubre de 2025)",
+      "citation": "Lecture 3 · PDF traducido, p. 46"
+    },
+    {
+      "page_id": "lec03-main-p049",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 9: Límites de confianza y harness",
+      "title": "Parte 9: Límites de confianza y harness",
+      "page": 49,
+      "content": "Parte 9\nLímites de confianza y harness\n¿De quién te fías según quién lo escribió?",
+      "citation": "Lecture 3 · PDF traducido, p. 48"
+    },
+    {
+      "page_id": "lec03-main-p030",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 4: Herramientas",
+      "title": "Llamadas a herramientas en lote",
+      "page": 30,
+      "content": "Llamadas a herramientas en lote\nLas llamadas que no usan resultados previos se hacen juntas (en lote) en una respuesta; las que sí, en orden\nFuente: Anthropic, “Parallel tool use” (Claude Platform Docs); OpenAI, “Function calling”; Google, “Function calling with the Gemini API” (todos consultados 2026/10/24). Nombres y ejemplos ilustrativos.\nNo usa resultados → llamar juntas\nRespuesta\ndel modelo (1)\nread_file(\"utils.py\")\nread_file(\"test_utils.py\")\nsearch(\"parse_date\")\nUsa resultados → llamar en orden\nrun_tests(\"tests/\")\nFalla test_parse_date\nread_file(\"test_utils.py\")\nSe ve el formato de fecha esperado\nedit_file(\"utils.py\", ...)",
+      "citation": "Lecture 3 · PDF traducido, p. 30",
+      "distance": 0.4019700586795807
+    },
+    {
+      "page_id": "lec03-main-p029",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 4: Herramientas",
+      "title": "Ejecutar herramientas en segundo plano",
+      "page": 29,
+      "content": "Ejecutar herramientas en segundo plano\nSi todas las pruebas tardan 20 min, el modelo avanza con otras herramientas mientras espera y recibe el resultado al terminar\nFuente: descripción de la ejecución en segundo plano en Anthropic Claude Code Docs, “Interactive mode”, “Tools reference”, “Headless” y “Subagents” (consultados 2026/10/24). Tiempos y secuencia ilustrativos.\nSi espera\nInicio\nNo puede hacer nada hasta el resultado (20 min)\nLee el resultado\nSi se ejecuta en segundo plano\nHerramientas\nEjecutando todas las pruebas (20 min)\nModelo\nInicio\n→ ID\nread_file\nutils.py\nsearch\nparse_date\nPensar una\ncorrección\nAviso de fin\nEl resultado entra al contexto\ny se retoma donde iba\nEjemplo: Claude Code　se inicia con run_in_background → devuelve al instante un ID de tarea → al terminar, retoma con el resultado\nReto: ¿puede el agente detectar que una tarea en segundo plano ha fallado o se ha detenido?\nAl cerrar Claude Code, las tareas en segundo plano también se detienen. Los procesos de varios días son cosa de los agentes residentes (Parte 2).",
+      "citation": "Lecture 3 · original japonés, p. 29 · PDF traducido relacionado p.29"
+    },
+    {
+      "page_id": "lec03-main-p031",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 4: Herramientas",
+      "title": "Subagentes",
+      "page": 31,
+      "content": "Subagentes\nUn subagente es otro agente al que llama el agente. Permite separar el contexto y ahorrar el del agente padre.\nFuente: Anthropic Claude Code Docs, “Create custom subagents”; OpenAI Codex Docs, “Subagents” (ambos consultados 2026/10/27). Número de llamadas y ejemplos ilustrativos.\nSi investiga el agente padre\nContexto del agente padre (se acumula de arriba abajo)\nTarea: arregla el bug de parse_date\nRegistro de la investigación\nResultados de search ×6\nContenido de archivos leídos con read_file ×14\nLog de run_tests\nAntes de corregir, el contexto se llena de registros de investigación\nSi se delega a un subagente\nContexto del agente padre (se acumula de arriba abajo)\nTarea: arregla el bug de parse_date\nAgent(\"Busca quién llama a parse_date\")\nEl subagente investiga en su propio contexto\nsearch ×6, read_file ×14 (no entran en el principal)\nInforme: 3 llamadas; falta la conversión a UTC\nEn el contexto del padre solo entra el informe resumido\nSe pueden elegir modelos distintos: un modelo potente (como Opus) para decisiones difíciles y uno económico (como Haiku) para investigar.\nEsto permite reducir costos. En Claude Code se puede especificar un modelo para cada subagente.",
+      "citation": "Lecture 3 · original japonés, p. 31 · PDF traducido relacionado p.31"
+    },
+    {
+      "page_id": "lec03-main-p025",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 4: Herramientas",
+      "title": "Human in the loop",
+      "page": 25,
+      "content": "Human in the loop\nLas operaciones irreversibles, como enviar un correo o borrar archivos, las confirma una persona antes de ejecutarse.\nFuente: Claude Code Docs, “Settings”, “Permission modes” y “Configure auto mode” (consultados 2026/10). La pantalla de aprobación se reproduce a partir de Claude Code.\nPantalla de aprobación de Claude Code\nBash(git push origin main)\n  Push local commits to remote\nDo you want to proceed?\n> 1. Yes\n  2. Yes, and don't ask again for git push\n  3. No, and tell Claude what to do differently\n(En Claude Code) La configuración decide cuánto preguntar\nPreguntar siempre (modo default)\nPide confirmación con cada tipo nuevo de operación.\nDefinir reglas (settings.json)\nallow = ejecutar sin preguntar; ask = preguntar siempre; deny = prohibir.\ndeny se aplica en cualquier modo.\nDecide otro modelo (modo auto)\nUn clasificador (otro modelo) verifica cada vez en lugar de una persona.\nSolo bloquea lo irreversible o lo que no se pidió.\nNo preguntar (bypassPermissions)\nEjecuta todo sin confirmación.",
+      "citation": "Lecture 3 · PDF traducido, p. 25",
+      "distance": 0.4058464765548706
+    },
+    {
+      "page_id": "lec03-main-p024",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 4: Herramientas",
+      "title": "MCP (Protocolo de Contexto del Modelo): los permisos se gestionan en el servidor",
+      "page": 24,
+      "content": "MCP (Protocolo de Contexto del Modelo): los permisos se gestionan en el servidor\nComparamos MCP (protocolo común para conectar herramientas y datos) con la CLI (herramientas que se usan con comandos)\nFuente: elaborado a partir de la especificación MCP (versión 2026-07-28), “Authorization”, y la descripción de Gatekeeper en Cloudflare, “Cloudflare OS: an open platform for agents, apps, and work” (2026/8/5). Comparación del docente.\nUsar la CLI directamente con la herramienta de shell\nAgente\nCredenciales\nCLI\nServicio\n• El agente puede leer las credenciales (claves de API, etc.)\n• Puede hacer todo lo que permita esa cuenta\nPasar por un servidor MCP\nAgente\nServidor MCP\nCredenciales\nServicio\n• El servidor limita qué operaciones y recursos expone (autorización)\n• El servidor puede registrar las llamadas (auditoría)\nPara tareas locales, la CLI suele bastar.\nEl funcionamiento de MCP y cuándo elegirlo se ven en detalle en la Clase 6.",
+      "citation": "Lecture 3 · original japonés, p. 24 · PDF traducido relacionado p.24"
+    }
+  ]
+}

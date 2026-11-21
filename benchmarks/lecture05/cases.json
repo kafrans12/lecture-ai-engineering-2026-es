@@ -1,0 +1,69 @@
+{
+  "benchmark": "Lecture 05 - Neighbor Expansion",
+  "source": "rag_data.zip / rag_data/lectures.json",
+  "reference_status": "candidate_unverified_relevance",
+  "notes": "Las páginas candidatas existen y sus títulos corresponden al tema. No se han etiquetado como ground truth exhaustivo. No calcular recall/precision definitivos sin revisión de relevancia.",
+  "cases": [
+    {
+      "id": 1,
+      "slug": "structured_output",
+      "question": "¿En qué se diferencian Structured Output y Constrained Decoding, y cómo garantizan un formato JSON válido?",
+      "candidate_page_ids": [
+        "lec03-main-p034",
+        "lec03-main-p035"
+      ],
+      "relevance_reviewed": false
+    },
+    {
+      "id": 2,
+      "slug": "prompt_injection",
+      "question": "¿Por qué una instrucción maliciosa dentro de un archivo puede comprometer a un agente y cómo ayudan los límites de confianza?",
+      "candidate_page_ids": [
+        "lec03-main-p050",
+        "lec03-main-p051"
+      ],
+      "relevance_reviewed": false
+    },
+    {
+      "id": 3,
+      "slug": "idempotencia",
+      "question": "¿Por qué es importante la idempotencia cuando un agente ejecuta herramientas o reintenta operaciones?",
+      "candidate_page_ids": [
+        "lec03-main-p027",
+        "lec03-main-p048"
+      ],
+      "relevance_reviewed": false
+    },
+    {
+      "id": 4,
+      "slug": "lora_qlora",
+      "question": "¿Qué diferencias existen entre LoRA y QLoRA para ajustar modelos grandes?",
+      "candidate_page_ids": [
+        "lec02-main-p051",
+        "lec02-main-p052"
+      ],
+      "relevance_reviewed": false
+    },
+    {
+      "id": 5,
+      "slug": "tokenizacion",
+      "question": "¿Qué es la tokenización y cómo se relaciona con la generación de tokens de un LLM?",
+      "candidate_page_ids": [
+        "lec02-main-p009",
+        "lec02-main-p010"
+      ],
+      "relevance_reviewed": false
+    },
+    {
+      "id": 6,
+      "slug": "memoria",
+      "question": "¿Por qué necesitan memoria los agentes y cómo pueden conservar información entre sesiones?",
+      "candidate_page_ids": [
+        "lec03-main-p038",
+        "lec03-main-p039",
+        "lec03-main-p040"
+      ],
+      "relevance_reviewed": false
+    }
+  ]
+}
