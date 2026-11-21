@@ -1,0 +1,25 @@
+{
+  "case": "structured_output",
+  "variant": "baseline",
+  "model": "gemini-3.5-flash-lite",
+  "question": "¿En qué se diferencian Structured Output y Constrained Decoding, y cómo garantizan un formato JSON válido?",
+  "retrieval_source": "benchmarks\\lecture05\\results\\structured_output_baseline.json",
+  "page_ids": [
+    "lec03-main-p035",
+    "lec03-main-p062",
+    "lec03-main-p034",
+    "lec03-main-p036",
+    "lec03-main-p033"
+  ],
+  "context_characters": 4141,
+  "created_at_utc": "2026-11-21T19:14:12.496113+00:00",
+  "answer": "Basándose estrictamente en el material de estudio proporcionado, no se explican las diferencias conceptuales entre *Structured Output* y *Constrained Decoding* como dos entidades separadas. En su lugar, el material presenta la salida estructurada (*Structured Output*) como un concepto donde primero se define un esquema de campos y tipos para pedir la respuesta en un formato como JSON [lec03-main-p034], y explica la **Decodificación restringida** (*Constrained Decoding*) como el mecanismo para garantizar dicho formato: en cada token, se descartan los candidatos que no cumplen con el esquema establecido, de modo que las salidas que no encajan ni siquiera se generan y los errores de formato casi desaparecen [lec03-main-p035].",
+  "usage": {
+    "prompt_token_count": 1318,
+    "candidates_token_count": 159,
+    "total_token_count": 1477,
+    "thoughts_token_count": null,
+    "cached_content_token_count": null
+  },
+  "method": "single_generate_content_with_frozen_retrieval_context"
+}

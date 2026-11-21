@@ -19,3 +19,8 @@ venv/
 
 # Registros de aprendizaje generados por el agente
 learning_log/
+# Lecture 05: archivos temporales de pruebas
+.pytest_temp_lec05/
+
+# Lecture 05: indice vectorial generado
+data/rag_data/index.sqlite3

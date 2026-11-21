@@ -1,0 +1,111 @@
+{
+  "case_id": 2,
+  "slug": "prompt_injection",
+  "question": "¿Por qué una instrucción maliciosa dentro de un archivo puede comprometer a un agente y cómo ayudan los límites de confianza?",
+  "variant": "neighbors",
+  "expand_neighbors": true,
+  "created_at_utc": "2026-11-21T18:40:00.676484+00:00",
+  "reference_status": "candidate_unverified_relevance",
+  "candidate_page_ids": [
+    "lec03-main-p050",
+    "lec03-main-p051"
+  ],
+  "candidate_pages_found": [
+    "lec03-main-p050",
+    "lec03-main-p051"
+  ],
+  "candidate_coverage": 1.0,
+  "total_pages": 7,
+  "unique_pages": 7,
+  "context_characters": 5083,
+  "page_ids": [
+    "lec03-main-p050",
+    "lec03-main-p049",
+    "lec03-main-p051",
+    "lec03-main-p052",
+    "lec03-main-p053",
+    "lec03-main-p054",
+    "lec03-main-p048"
+  ],
+  "results": [
+    {
+      "page_id": "lec03-main-p050",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 9: Límites de confianza y harness",
+      "title": "Los archivos de configuración también son instrucciones para el modelo",
+      "page": 50,
+      "content": "Los archivos de configuración también son instrucciones para el modelo\nPara el modelo, instrucciones y datos son el mismo texto. No puede juzgar si son de fiar.\nFuente: Check Point Research (2026/2/25); Dong et al. “MINJA” (arXiv:2503.03704). Tabla elaborada por el ponente. El nombre del archivo de instrucciones varía según la herramienta.\nConfiguración\nFunción en el harness\nQuién puede escribirlo\nArchivo de instrucciones\nAGENTS.md\nCLAUDE.md\nSe lee al inicio, siempre\nInstrucciones de trabajo\nTú, o\nquien pueda escribir en el repo\nSkill\n(.claude/skills/)\nProcedimiento que se lee si encaja con la tarea.\nPuede ejecutar scripts\nquien pueda escribir en el repo\nMemoria\nGuarda registros y\nlos devuelve al contexto después\nQuien haya escrito\nentradas pasadas\nCómo se convierte en un riesgo\nAl abrir un repositorio clonado, se leen automáticamente instrucciones escritas por otras personas.\nSi se instala una Skill pública sin leerla, se pueden ejecutar procedimientos o scripts maliciosos.\nUna entrada maliciosa que se haya colado puede persistir como instrucción en conversaciones posteriores.",
+      "citation": "Lecture 3 · original japonés, p. 50 · PDF traducido relacionado p.49",
+      "distance": 0.27558478713035583
+    },
+    {
+      "page_id": "lec03-main-p049",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 9: Límites de confianza y harness",
+      "title": "Parte 9: Límites de confianza y harness",
+      "page": 49,
+      "content": "Parte 9\nLímites de confianza y harness\n¿De quién te fías según quién lo escribió?",
+      "citation": "Lecture 3 · PDF traducido, p. 48"
+    },
+    {
+      "page_id": "lec03-main-p051",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 9: Límites de confianza y harness",
+      "title": "Separar los límites",
+      "page": 51,
+      "content": "Separar los límites\nTodo parece el mismo texto, así que el modelo no distingue. La distinción la ponen las personas y el harness.\nFuente: síntesis del ponente. Las reglas ask y deny son de la configuración de permisos de Claude Code (Claude Code Docs “Configure permissions”).\nDecide de antemano qué está dentro y qué fuera\nFuera\nRepositorios\nclonados\nSkills de terceros\nWeb e issues públicos\nResultados de herramientas\nRevisar\nantes de meterlo\nDentro\nEscrito por ti\nArchivo de instrucciones\nLeído y aceptado\nSkill\nRevisado\nMemoria\nPon una comprobación en el límite\nLeer antes de meter\nLee los archivos de instrucciones y Skills de un repositorio clonado antes de activarlos.\nAl leer contenido externo, reduce permisos\nSi lee la Web o issues, exige aprobación para enviar o borrar (reglas ask y deny).\nRevisa la memoria de vez en cuando\nUna persona comprueba qué ha entrado en la memoria a largo plazo.",
+      "citation": "Lecture 3 · PDF traducido, p. 50"
+    },
+    {
+      "page_id": "lec03-main-p052",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 9: Límites de confianza y harness",
+      "title": "Sin sandbox",
+      "page": 52,
+      "content": "Sin sandbox\nIncidentes reales. En todos, el agente manipuló archivos que su tarea no necesitaba.\nFuente: publicaciones en X de Lemkin y Masad (CEO de Replit) (2025/7/18 y 20); publicación del afectado en Reddit r/google_antigravity (2025/11) y noticia de How-To Geek; anthropics/claude-code issue #99193 (2026/10/3); aviso de seguridad de Nx GHSA-cxm3-wv7p-598c (2025/8/27). Todos son informes de los afectados o de las empresas. Verificado el 2026/10/26.\nBorra la base de datos de producción\nReplit Agent (julio de 2025)\nDurante el desarrollo borró la BD de producción. Desarrollo y producción usaban la misma BD\nPrevención: no dar credenciales de producción\nBorra una unidad entera\nGoogle Antigravity (noviembre de 2025)\nAl intentar borrar la caché, borró todo el contenido de la unidad D\nPrevención: bloquear escrituras fuera de la carpeta de trabajo\nBorra la carpeta personal\nClaude Code (octubre de 2026, Windows)\nAl intentar limpiar, borró la carpeta personal. También las claves (.ssh)\nPrevención: bloquear escrituras fuera de la carpeta de trabajo\nPone a un AI CLI a buscar secretos\nPaquete Nx secuestrado (agosto de 2025)\nUn paquete malicioso lanzó un AI CLI sin confirmar permisos, reunió .env y otros archivos y los subió fuera\nPrevención: bloquear la comunicación externa",
+      "citation": "Lecture 3 · PDF traducido, p. 51",
+      "distance": 0.32786425948143005
+    },
+    {
+      "page_id": "lec03-main-p053",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 9: Límites de confianza y harness",
+      "title": "Sandbox",
+      "page": 53,
+      "content": "Sandbox\nLos agentes suelen ejecutarse en un entorno con permisos limitados a un ámbito fijo. Eso es un sandbox.\nFuente: Anthropic Engineering “sandboxing de Claude Code”; Claude Code Docs “Configure the sandboxed Bash tool”. Desactivado por defecto. La lectura de claves se puede prohibir con credentials / denyRead. Verificado el 2026/10/26.\n/sandbox de Claude Code\nTu PC\nSandbox\nEl agente\nejecuta comandos\nCarpeta de trabajo:\nlectura y escritura\nSolo se comunica con\ndominios permitidos\n(github.com, etc.)\n~/.ssh, ~/.aws\nlegibles por defecto\nServidor del atacante\nsin conexión\nSe puede bloquear\nModificar o borrar fuera de la carpeta de trabajo\nEnviar a destinos no permitidos\nNo se puede bloquear\nQue el agente sea engañado\nAbuso de destinos permitidos (p. ej., credenciales de la BD de producción)",
+      "citation": "Lecture 3 · original japonés, p. 53 · PDF traducido relacionado p.52"
+    },
+    {
+      "page_id": "lec03-main-p054",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 10: RSI y agentes",
+      "title": "Parte 10: RSI y agentes",
+      "page": 54,
+      "content": "Parte 10\nRSI y agentes\nRevisamos la RSI de la Clase 1 desde el loop, la parada y los límites de confianza",
+      "citation": "Lecture 3 · PDF traducido, p. 53"
+    },
+    {
+      "page_id": "lec03-main-p048",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "Agentes de IA",
+      "section": "Parte 7: Condiciones de parada y comportamiento ante fallos",
+      "title": "Garantizar la idempotencia",
+      "page": 48,
+      "content": "Garantizar la idempotencia\nLa conversación y el estado se pueden revertir; las operaciones enviadas fuera, no\nFuente: Zheng et al. ACRFence (arXiv:2603.20625, marzo de 2026, CoDAIM workshop 2026). El ejemplo de la transferencia es del mismo artículo. La prueba de concepto usó la función de checkpoints de Claude Code CLI (Qwen3-32B) y un servicio de transferencias simulado.\nAgente\nBanco\n① Transferir\n② Caída a mitad\n③ Reanudar desde\nel punto guardado\n④ Reenviar\n(nuevo ID de ref.)\nSolo la conversación y el estado vuelven hasta aquí\n1.ª: ejecutada\n2.ª: ejecutada\nLa transferencia no se revierte → pago doble\nSolución\nRegistrar las\noperaciones externas\nTras reanudar,\nllega la misma operación\nNo repetir:\ndevolver lo registrado\nEn el experimento, las 10 ejecuciones con reanudación se duplicaron. Sin reanudación, 0.",
+      "citation": "Lecture 3 · PDF traducido, p. 47"
+    }
+  ]
+}

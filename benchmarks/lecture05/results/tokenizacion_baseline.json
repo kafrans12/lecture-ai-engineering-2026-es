@@ -1,0 +1,90 @@
+{
+  "case_id": 5,
+  "slug": "tokenizacion",
+  "question": "¿Qué es la tokenización y cómo se relaciona con la generación de tokens de un LLM?",
+  "variant": "baseline",
+  "expand_neighbors": false,
+  "created_at_utc": "2026-11-21T18:42:52.232707+00:00",
+  "reference_status": "candidate_unverified_relevance",
+  "candidate_page_ids": [
+    "lec02-main-p009",
+    "lec02-main-p010"
+  ],
+  "candidate_pages_found": [
+    "lec02-main-p009",
+    "lec02-main-p010"
+  ],
+  "candidate_coverage": 1.0,
+  "total_pages": 5,
+  "unique_pages": 5,
+  "context_characters": 5171,
+  "page_ids": [
+    "lec02-main-p009",
+    "lec02-main-p008",
+    "lec02-main-p010",
+    "lec02-main-p006",
+    "lec02-main-p015"
+  ],
+  "results": [
+    {
+      "page_id": "lec02-main-p009",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "title": "Tokenización: dividir el texto en las unidades que maneja el modelo",
+      "page": 9,
+      "content": "Tokenización: dividir el texto en las unidades que maneja el modelo\n1/4 — Los LLM eligen las siguientes palabras mediante probabilidades.\nLos tokens pueden ser palabras, partes de palabras o signos. La longitud de entrada y salida y el coste se cuentan en tokens.\n\nEjemplo: dividir la pregunta de un estudiante en tokens. La segmentación depende del modelo; este esquema es ilustrativo.\nPregunta original en japonés: «RAGって何ですか？」, que significa «¿Qué es RAG?».\nToken original | ID ilustrativo\nRAG | 1000\nって | 1037\n何 | 1074\nです | 1111\nか | 1148\n？ | 1185\nCada token se convierte en un número, su ID, y el modelo recibe una secuencia de números.\n\nEl límite de longitud se cuenta en tokens: la cantidad que puede leer de una vez, o longitud del contexto, también se determina en tokens.\nEl coste también se cuenta en tokens: la tarifa de la API depende de los tokens de entrada y salida; véase el complemento con la estimación de costes.\nLa eficiencia varía por idioma: el mismo contenido puede necesitar distinto número de tokens según el idioma.",
+      "citation": "Lecture 2 · original japonés, p. 9",
+      "distance": 0.27254360914230347
+    },
+    {
+      "page_id": "lec02-main-p008",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "title": "Un LLM elige el siguiente token mediante probabilidades, una y otra vez",
+      "page": 8,
+      "content": "Un LLM elige el siguiente token mediante probabilidades, una y otra vez\n1/4 — Los LLM eligen las siguientes palabras mediante probabilidades.\nIdea central de estos 15 minutos: un LLM calcula las probabilidades del siguiente token y elige uno. Por eso las respuestas varían y aparecen errores plausibles.\n\nToken: unidad en que se divide un texto. Tanto la longitud como el coste se cuentan en tokens.\nComo se elige a partir de probabilidades, mediante muestreo, la respuesta puede cambiar aunque la pregunta sea la misma.\nEl preentrenamiento aprende lo plausible. El post-entrenamiento lo orienta hacia lo correcto, pero no lo garantiza. Por eso hay que medir sus resultados y trabajar teniendo en cuenta sus límites.",
+      "citation": "Lecture 2 · original japonés, p. 8",
+      "distance": 0.28619715571403503
+    },
+    {
+      "page_id": "lec02-main-p010",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "title": "Calcular la probabilidad del siguiente token, elegir uno y repetir",
+      "page": 10,
+      "content": "Calcular la probabilidad del siguiente token, elegir uno y repetir\n1/4 — Los LLM eligen las siguientes palabras mediante probabilidades.\nEl Transformer, la estructura habitual de los LLM actuales, examina todo el contexto y produce una distribución de probabilidad del siguiente token.\nFuente: las probabilidades son ejemplos ilustrativos.\n\nEntrada, el texto hasta este punto, traducido del ejemplo japonés:\nPregunta: ¿Qué es RAG?\nRespuesta: RAG es un método que… los documentos relacionados con la pregunta.\n→ Transformer.\nProbabilidades de los tokens originales japoneses, con su significado en español:\n検索, buscar o recuperar: 46%.\n探し, buscar: 31%.\n集め, reunir: 12%.\n読み, leer: 7%.\n\n1. Elegir un token según esas probabilidades; por ejemplo, 検索.\n2. Añadir el token elegido al final de la entrada.\n3. Volver a calcular las probabilidades del siguiente token.\n4. Repetir hasta que aparezca el token de fin.\n\nLo aprendido durante el entrenamiento son probabilidades de qué es probable que venga después en un contexto dado. El modelo por sí mismo no incluye un mecanismo que compruebe directamente si un hecho es correcto.",
+      "citation": "Lecture 2 · original japonés, p. 10 · PDF traducido relacionado p.14",
+      "distance": 0.31722572445869446
+    },
+    {
+      "page_id": "lec02-main-p006",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Introducción",
+      "title": "Términos de hoy: solo 6 para empezar",
+      "page": 6,
+      "content": "Términos de hoy: solo 6 para empezar\nEstructura de hoy.\nLos veremos con detalle en cada bloque. Aquí basta entenderlos en una frase. Si tienes dudas, vuelve a esta diapositiva.\n\nToken: unidad en que se divide un texto; se utiliza para contar la longitud y el coste. Bloque 1.\nParámetros o pesos: números del interior del modelo, de miles de millones a billones, que se ajustan durante el entrenamiento. Bloque 1.\nPreentrenamiento: aprender a predecir el siguiente token con grandes cantidades de texto. Es la base del conocimiento. Bloque 2.\nPost-entrenamiento: aprender cómo responder mediante ejemplos y evaluaciones. Bloque 2.\nCómputo en inferencia: aumentar la cantidad de razonamiento al responder. Bloque 2.\nFine-Tuning (FT), ajuste fino: realizar nosotros mismos post-entrenamiento a pequeña escala. Bloque 4.\n\nRepaso de la Clase 1: RAG = buscar materiales relacionados con la pregunta, incluirlos en la entrada y después hacer que responda. Más detalle en la Clase 5.",
+      "citation": "Lecture 2 · original japonés, p. 6",
+      "distance": 0.3413298726081848
+    },
+    {
+      "page_id": "lec02-main-p015",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Cómo funcionan los modelos fundacionales",
+      "section": "Los LLM eligen las siguientes palabras mediante probabilidades",
+      "title": "Otro límite: no usa por igual todo un contexto largo",
+      "page": 15,
+      "content": "Otro límite: no usa por igual todo un contexto largo\n1/4 — Los LLM eligen las siguientes palabras mediante probabilidades.\nAunque aumente lo que puede leer de una vez, tiende a pasar por alto la información intermedia. Los modelos recientes muestran mejoras, pero hay que evaluar el uso propio.\nFuentes: N. F. Liu et al., «Lost in the Middle», TACL 2024. Sobre las mejoras y los retos pendientes: C.-P. Hsieh et al., «RULER», COLM 2024, entre otros.\n\nPiénsalo: ¿qué ocurre con la precisión si la respuesta está en medio? Figura 1 de Liu et al.\nLa información situada en medio se aprovecha menos, formando una curva en U. La línea discontinua representa el caso sin documentos.\nEn un chatbot:\n• En lugar de proporcionar todos los materiales del curso, buscar y dar solo las partes relacionadas con la pregunta: RAG.\n• Organizar la información de conversaciones y documentos largos mediante resúmenes y notas de trabajo.\n• Variar la longitud de entrada y medir si cae la tasa de acierto.\n\nTexto del gráfico: 20 Total Retrieved Documents (~4K tokens), 20 documentos recuperados en total, unos 4K tokens. Eje horizontal: Position of Document with the Answer, posición del documento que contiene la respuesta. Eje vertical: Accuracy, precisión. Leyenda: gpt-3.5-turbo-0613 / gpt-3.5-turbo-0613 (closed-book, sin documentos).",
+      "citation": "Lecture 2 · original japonés, p. 15",
+      "distance": 0.3472785949707031
+    }
+  ]
+}

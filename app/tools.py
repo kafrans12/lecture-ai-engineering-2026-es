@@ -6,9 +6,10 @@ y en los argumentos con los que la llama.
 """
 
 import json
-import random
 from functools import cache
 from pathlib import Path
+
+from app.config import api_error_message
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 MAX_RESULTS = 3
@@ -82,51 +83,51 @@ def get_lecture_summary(lecture: int) -> str:
     return path.read_text(encoding="utf-8")
 
 
-def make_quiz(lecture: int) -> str:
-    """Genera una pregunta de repaso a partir del glosario de una sesión.
+def search_materials(query: str) -> str:
+    """Busca en los materiales principales de Lecture 01–03 y devuelve el texto, el título y el número de las páginas relacionadas.
 
-    Úsala cuando el usuario solicite una pregunta de repaso o un quiz
-    de una Lecture específica. Indica el número de sesión en lecture.
+    Indica en query el contenido que quieres consultar.
     """
-    glossary = load_glossary()
+    from google.genai.errors import APIError
+    import sqlite3
+    from app.retrieval import search
 
-    terms = [
-        entry for entry in glossary
-        if entry["lecture"] == lecture
-    ]
-
-    if not terms:
+    try:
         return json.dumps(
-            {
-                "message": f"No hay términos disponibles para Lecture {lecture:02d}."
-            },
-            ensure_ascii=False,
+            {"results": search(query, expand_neighbors=True)},
+            ensure_ascii=False
         )
-
-    selected = random.choice(terms)
-
-    return json.dumps(
-        {
-            "question": f"¿Qué significa {selected['term']}?",
-            "answer": selected["definition"],
-        },
-        ensure_ascii=False,
-    )
+    except (ValueError, FileNotFoundError, sqlite3.Error) as e:
+        return json.dumps({"error": str(e), "results": []}, ensure_ascii=False)
+    except APIError as e:
+        return json.dumps({"error": api_error_message(e.code), "results": []}, ensure_ascii=False)
 
 
-def save_learning_log(topic: str, notes: str) -> str:
-    """Guarda un registro de aprendizaje en un archivo Markdown.
+def browse_tree(node_id: str | None = None) -> str:
+    """Devuelve el índice de contenidos y la primera frase de las páginas. Si indicas un ID de página, devuelve el texto completo.
 
-    Úsala cuando el estudiante solicite explícitamente guardar
-    sus apuntes o registrar lo aprendido sobre un tema.
-    Esta operación modifica archivos y requiere aprobación humana.
+    Omite node_id al empezar. Después recorre el índice de contenidos indicando los ID devueltos.
     """
-    log_dir = Path(__file__).resolve().parent.parent / "learning_log"
-    log_dir.mkdir(parents=True, exist_ok=True)
+    from app.retrieval import browse_tree as browse
 
-    log_path = log_dir / "learning_log.md"
+    try:
+        return json.dumps(browse(node_id), ensure_ascii=False)
+    except (ValueError, OSError) as e:
+        return json.dumps({"error": str(e)}, ensure_ascii=False)
 
-    with log_path.open("a", encoding="utf-8") as file:
-        file.write(f"\n## {topic}\n\n{notes}\n")
 
-    return f"Registro de aprendizaje guardado en {log_path}"
+def search_graph(query: str) -> str:
+    """Busca en los materiales y recorre páginas adyacentes y términos comunes para devolver el texto y los datos de cita de las páginas relacionadas.
+
+    Indica en query el contenido que quieres consultar.
+    """
+    import sqlite3
+    from google.genai.errors import APIError
+    from app.retrieval import search_graph as search
+
+    try:
+        return json.dumps(search(query), ensure_ascii=False)
+    except (ValueError, OSError, sqlite3.Error) as e:
+        return json.dumps({"error": str(e)}, ensure_ascii=False)
+    except APIError as e:
+        return json.dumps({"error": api_error_message(e.code)}, ensure_ascii=False)
